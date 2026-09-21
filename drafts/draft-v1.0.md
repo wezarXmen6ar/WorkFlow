@@ -34,8 +34,9 @@ Objective: Manage all department projects in one place
  │       └─ Sub-solution: Import existing Excel data
  └─ Problem: Hard to see what each team member is working on
      ├─ Solution: Resource assignment and workload tracking
-     │   └─ Sub-solution: Resource pool
-     └─ Solution: Developer progress reporting
+     │   ├─ Sub-solution: Resource pool
+     │   └─ Sub-solution: Assign resources to phases
+     └─ Solution: Phase progress reporting
          └─ Sub-solution: Project manager approval of progress
 
 Objective: Present accurate project status to stakeholders
@@ -64,7 +65,7 @@ Objective: Protect the team from scope creep and project pressure
 
 ## Also serves
 
-Thirteen entries serve more than one parent.
+Fourteen entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -73,11 +74,12 @@ Thirteen entries serve more than one parent.
 | Stakeholders don't see the pile-up of concurrent projects | Objective: Present accurate project status to stakeholders |
 | Department portfolio view | Problem: Stakeholders don't see the pile-up of concurrent projects |
 | Resource assignment and workload tracking | Problems: Stakeholders don't see the pile-up; The cost of priority shifts is invisible |
-| Developer progress reporting | Problem: No single source of truth for project status |
+| Phase progress reporting | Problem: No single source of truth for project status |
 | Project manager approval of progress | Solution: Live project status timeline |
 | Live project status timeline | Problem: Requirements keep being added with no visible cost |
 | Show the price of a change across all projects before it is confirmed | Problems: Requirements keep being added with no visible cost; Stakeholders don't see the pile-up |
 | Resource pool | Solutions: Workload indicator; Show the price of a change |
+| Assign resources to phases | Solutions: Workload indicator; Show the price of a change |
 | Access by role and owning general department | Solutions: Department portfolio view; Workload indicator |
 | Highlight the impact | Solution: Show the price of a change across all projects before it is confirmed |
 | Price shown, confirm before applying | Solution: Show the impact of new requirements before work starts |
@@ -195,22 +197,29 @@ Thirteen entries serve more than one parent.
 
 ### Resource pool
 - Type: Sub-solution
-- Description: All developers are kept in a resource pool. The user assigns them to projects for a time frame, so it is clear who is on what and when.
+- Description: All team members are kept in a resource pool: developers, business analysts, tech leads, and project managers. The user assigns them to projects for a time frame, so it is clear who is on what and when.
 - Home parent (suggestion only): Solution "Resource assignment and workload tracking"
 - Also serves (suggestion only): Solutions "Workload indicator on the department-wide view" and "Show the price of a change across all projects before it is confirmed" — both read capacity from the pool.
 - Open questions: none
 
-### Developer progress reporting
+### Assign resources to phases
+- Type: Sub-solution
+- Description: Resources are assigned not only to a project but to its phases: developers to the development phase, BAs to the analysis phase, and so on. Each phase has a planned time frame, and the days the person reports (confirmed by the project manager) are the exact time they actually worked on the project.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
+- Also serves (suggestion only): Solutions "Workload indicator on the department-wide view" and "Show the price of a change across all projects before it is confirmed" — both need the real time each person spends per phase. Depends on "Resource pool" and "Project phases".
+- Open questions: none
+
+### Phase progress reporting
 - Type: Solution
-- Description: Developers report their progress on the development phase of the projects they work on, as a share of the whole development (for example, a finished task worth 10% of development). Progress counts only after the project manager confirms it.
+- Description: Whoever is assigned to a phase reports on it: the days they actually spent and when the phase is done (for example, analysis planned for five days, the analyst reports three and marks it done). Developers report progress on the development phase as a share of the whole development (for example, a finished task worth 10%). Applies to every phase. Progress counts only after the project manager confirms it.
 - Home parent (suggestion only): Problem "Hard to see what each team member is working on"
 - Also serves (suggestion only): Problem "No single source of truth for project status" — this is what keeps the status current.
 - Open questions: none
 
 ### Project manager approval of progress
 - Type: Sub-solution
-- Description: A developer's progress report (for example a finished task worth 10% of development) is not counted until the project manager confirms or approves it. Only approved progress moves the project's status.
-- Home parent (suggestion only): Solution "Developer progress reporting"
+- Description: A team member's report on a phase (for example the analyst's three days, or a finished task worth 10% of development) is not counted until the project manager confirms it. Only confirmed progress moves the project's status. The project manager can also enter the report directly on the team member's behalf, for example when the information comes to them verbally.
+- Home parent (suggestion only): Solution "Phase progress reporting"
 - Also serves (suggestion only): Solution "Live project status timeline" — approved progress is what the timeline shows.
 - Open questions: Who splits the development into weighted tasks (for example a task worth 10%), and when? The project manager at development planning?
 
@@ -223,7 +232,7 @@ Thirteen entries serve more than one parent.
 
 ### Project phases
 - Type: Sub-solution
-- Description: Phases are fully flexible: nothing is always the same, and a small project can skip some. Each project picks and orders its own phases (and can add custom ones), and the timeline shows them. Known phases: requirements gathering, BA analysis document (approved by the business user), development planning (optional; sets the timeline and end date), development, UAT, security testing, deployment, pilot on a small sample. Security testing and deployment are mandatory in the department's process.
+- Description: Phases are fully flexible: nothing is always the same, and a small project can skip some. When creating a project, the project manager adds its phases and a planned time frame for each (for example, analysis: five days). Each project picks and orders its own phases (and can add custom ones), and the timeline shows them. The project's end date never moves automatically when a phase takes fewer or more days than planned. Known phases: requirements gathering, BA analysis document (approved by the business user), development planning (optional; sets the timeline and end date), development, UAT, security testing, deployment, pilot on a small sample. Security testing and deployment are mandatory in the department's process.
 - Home parent (suggestion only): Solution "Live project status timeline"
 - Also serves (suggestion only): none
 - Open questions: Should the tool flag a project that has no security testing or deployment phase, or stay silent?
@@ -237,7 +246,7 @@ Thirteen entries serve more than one parent.
 
 ### Access by role and owning general department
 - Type: Sub-solution
-- Description: Roles: (1) GDAI project managers manage their projects, keep them updated, and approve developer progress. (2) Developers report development progress on their projects. (3) Business analysts see the projects they are assigned to and can add project documents (for example the BA analysis document), but have no project-manager rights. (4) Business users see only projects owned by their general department; decision makers see all projects. Business users and decision makers only view: they never enter data, requests, or input of any kind. Each project also has a business project manager, an optional vice project manager on the business side, and a GDAI technical project manager.
+- Description: Roles: (1) GDAI project managers manage their projects, keep them updated, and approve developer progress. (2) Developers report progress on their assigned phases. (3) Business analysts see the projects they are assigned to, report on their phases, and can add project documents (for example the BA analysis document), but have no project-manager rights. (4) Business users see only projects owned by their general department; decision makers see all projects. Business users and decision makers only view: they never enter data, requests, or input of any kind. Each project also has a business project manager, an optional vice project manager on the business side, and a GDAI technical project manager.
 - Home parent (suggestion only): Solution "Live project status timeline"
 - Also serves (suggestion only): Solutions "Department portfolio view" and "Workload indicator on the department-wide view" — the same rule applies to every view.
 - Open questions: Are the business-side project manager and vice project manager view-only like the other business users?
@@ -296,4 +305,4 @@ Thirteen entries serve more than one parent.
 - Description: Show the department's load by quarter (zoomable to month) on the department-wide view. Load is the development days of all assigned work divided by the development days the resource pool has available in that period; over 100% means the department has more work than resources. Work on projects put on hold still counts as assigned workload, so the true demand stays visible. Colored from green to red. Needs development-day estimates per project and data from the "Resource pool". The what-if preview when new work is added belongs to "Show the price of a change across all projects before it is confirmed", which shows the load rising before confirmation.
 - Home parent (suggestion only): Problem "Stakeholders don't see the pile-up of concurrent projects"
 - Also serves (suggestion only): none
-- Open questions: none
+- Open questions: With all roles in the pool, is the load shown per role (developers, BAs, and so on) or as one overall figure?
