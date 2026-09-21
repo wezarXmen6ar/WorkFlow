@@ -37,7 +37,15 @@ Objective (O-001) > Problem (P-001) > Solution (S-001) > Sub-solution (S-001.1) 
 - Every push into the main documents (adding or changing entries) is recorded as a version: 1.0 for the first push, then 1.1, 1.2, 1.3, and so on. Version numbers are never reused.
 - On each push: save a full copy of objectives.md, problems.md, and solutions.md in `versions/v<number>/`, and add an entry to [versions/log.md](versions/log.md) with the version, date, its draft file, and what was pushed (IDs and titles).
 - Never edit or delete a saved version.
+- Each push is also a git commit tagged with its version (`v1.0`, `v1.1`, ...), containing the updated main documents, the version snapshot, the log, and the draft files. Push the commit and the tag to origin.
+- Never rewrite git history or move or delete a version tag. A rollback is a new commit.
 - To reverse a push (only when the user asks): restore the main documents from the previous version, copy the reversed entries into the active draft without IDs, and record the rollback in the log.
+
+## Prototype first
+
+- We build a prototype (POC) first. Do not build the actual platform or tool until the user confirms the prototype sufficiently covers the full project scope and solutions.
+- Every feature in the prototype gets a small exclamation mark (!) marker. On hover it shows the feature's ID and name and the solution (and sub-solution) it belongs to, so features can be traced in real time while using or testing the prototype.
+- Only build features that exist in solutions.md with an ID and a complete chain up to an objective (see the rules above).
 
 ## Analysis follows the same workflow
 
