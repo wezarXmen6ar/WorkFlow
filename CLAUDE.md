@@ -2,6 +2,11 @@
 
 Keep all responses summarized, simple, straight to the point, clear, and easy to understand.
 
+# What belongs in this file
+
+- This file holds only how I work: rules, process, and formats. No business or project content.
+- Project content goes in objectives.md, problems.md, and solutions.md (through the drafts), or in prototype.md. Never here.
+
 # Workflow Rules (strict)
 
 All work follows this hierarchy, tracked in [objectives.md](objectives.md), [problems.md](problems.md), and [solutions.md](solutions.md):
@@ -62,6 +67,7 @@ Objective (O-001) > Problem (P-001) > Solution (S-001) > Sub-solution (S-001.1) 
 - We build a prototype (POC) first. Do not build the actual platform or tool until the user confirms the prototype sufficiently covers the full project scope and solutions.
 - Every feature in the prototype gets a small exclamation mark (!) marker. On hover it shows the feature's ID and name and every solution and sub-solution it serves, so features can be traced in real time while using or testing the prototype.
 - Only build features that exist in solutions.md with an ID and a complete chain up to an objective (see the rules above).
+- What the prototype must show and how it is judged is in [prototype.md](prototype.md). Follow it.
 
 ## Analysis follows the same workflow
 

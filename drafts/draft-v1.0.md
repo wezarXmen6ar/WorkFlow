@@ -30,16 +30,19 @@ Home parents only. The "also serves" links are listed after the tree.
 Objective: Manage all department projects in one place
  ├─ Problem: No department-wide view of all projects
  │   └─ Solution: Department portfolio view
- │       └─ Sub-solution: Yearly plan by quarter
+ │       ├─ Sub-solution: Yearly plan by quarter
+ │       └─ Sub-solution: Import existing Excel data
  └─ Problem: Hard to see what each team member is working on
      ├─ Solution: Resource assignment and workload tracking
      │   └─ Sub-solution: Resource pool
      └─ Solution: Developer progress reporting
+         └─ Sub-solution: Project manager approval of progress
 
 Objective: Present accurate project status to stakeholders
  └─ Problem: No single source of truth for project status
      └─ Solution: Live project status timeline
          ├─ Sub-solution: Project phases
+         ├─ Sub-solution: Jira link for deployment and security testing
          └─ Sub-solution: Access by role and owning general department
 
 Objective: Document everything about each project
@@ -61,7 +64,7 @@ Objective: Protect the team from scope creep and project pressure
 
 ## Also serves
 
-Twelve entries serve more than one parent.
+Thirteen entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -71,6 +74,7 @@ Twelve entries serve more than one parent.
 | Department portfolio view | Problem: Stakeholders don't see the pile-up of concurrent projects |
 | Resource assignment and workload tracking | Problems: Stakeholders don't see the pile-up; The cost of priority shifts is invisible |
 | Developer progress reporting | Problem: No single source of truth for project status |
+| Project manager approval of progress | Solution: Live project status timeline |
 | Live project status timeline | Problem: Requirements keep being added with no visible cost |
 | Show the price of a change across all projects before it is confirmed | Problems: Requirements keep being added with no visible cost; Stakeholders don't see the pile-up |
 | Resource pool | Solutions: Workload indicator; Show the price of a change |
@@ -175,6 +179,13 @@ Twelve entries serve more than one parent.
 - Also serves (suggestion only): none
 - Open questions: none
 
+### Import existing Excel data
+- Type: Sub-solution
+- Description: The tool replaces Excel for tracking projects. Existing Excel tables and data can be imported, so nothing has to be retyped and the department-wide view is filled from day one.
+- Home parent (suggestion only): Solution "Department portfolio view"
+- Also serves (suggestion only): none
+- Open questions: What do the Excel files contain today (project list, yearly plan, resources), and which should be imported first?
+
 ### Resource assignment and workload tracking
 - Type: Solution
 - Description: Record which resources (developers, business analysts, tech leads, project managers) are assigned to which projects.
@@ -191,10 +202,17 @@ Twelve entries serve more than one parent.
 
 ### Developer progress reporting
 - Type: Solution
-- Description: Developers report their progress on the development phase of the projects they work on.
+- Description: Developers report their progress on the development phase of the projects they work on, as a share of the whole development (for example, a finished task worth 10% of development). Progress counts only after the project manager confirms it.
 - Home parent (suggestion only): Problem "Hard to see what each team member is working on"
 - Also serves (suggestion only): Problem "No single source of truth for project status" — this is what keeps the status current.
 - Open questions: none
+
+### Project manager approval of progress
+- Type: Sub-solution
+- Description: A developer's progress report (for example a finished task worth 10% of development) is not counted until the project manager confirms or approves it. Only approved progress moves the project's status.
+- Home parent (suggestion only): Solution "Developer progress reporting"
+- Also serves (suggestion only): Solution "Live project status timeline" — approved progress is what the timeline shows.
+- Open questions: Who splits the development into weighted tasks (for example a task worth 10%), and when? The project manager at development planning?
 
 ### Live project status timeline
 - Type: Solution
@@ -210,16 +228,23 @@ Twelve entries serve more than one parent.
 - Also serves (suggestion only): none
 - Open questions: Should the tool flag a project that has no security testing or deployment phase, or stay silent?
 
+### Jira link for deployment and security testing
+- Type: Sub-solution
+- Description: Deployment and security testing are done in Jira, so the tool complements Jira instead of replacing it. Those phases appear on the project timeline with their Jira status, so nobody enters the same information twice.
+- Home parent (suggestion only): Solution "Live project status timeline"
+- Also serves (suggestion only): none
+- Open questions: Does the tool only link to the Jira ticket and the project manager sets the status, or does it pull the status from Jira automatically?
+
 ### Access by role and owning general department
 - Type: Sub-solution
-- Description: The business side is read-only. Business users see only projects owned by their general department; decision makers see all projects. Each project has a business project manager, an optional vice project manager who covers leave, and a GDAI technical project manager.
+- Description: Roles: (1) GDAI project managers manage their projects, keep them updated, and approve developer progress. (2) Developers report development progress on their projects. (3) Business analysts see the projects they are assigned to and can add project documents (for example the BA analysis document), but have no project-manager rights. (4) Business users see only projects owned by their general department; decision makers see all projects. Business users and decision makers only view: they never enter data, requests, or input of any kind. Each project also has a business project manager, an optional vice project manager on the business side, and a GDAI technical project manager.
 - Home parent (suggestion only): Solution "Live project status timeline"
 - Also serves (suggestion only): Solutions "Department portfolio view" and "Workload indicator on the department-wide view" — the same rule applies to every view.
-- Open questions: none
+- Open questions: Are the business-side project manager and vice project manager view-only like the other business users?
 
 ### Central project file repository
 - Type: Solution
-- Description: All project files in one place with context and history, and the upload date recorded, ready for anyone who takes over.
+- Description: All project files in one place with context and history, and the upload date recorded, ready for anyone who takes over. Project managers and business analysts can add documents (for example the BA analysis document).
 - Home parent (suggestion only): Problem "Project files and context depend on each project manager"
 - Also serves (suggestion only): none
 - Open questions: none
