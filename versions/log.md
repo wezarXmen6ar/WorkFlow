@@ -13,4 +13,4 @@ Every push from a draft file in [drafts/](../drafts/) into the main documents is
 
 ---
 
-No versions yet. The first push will be v1.0.
+No versions yet. The first push will be v0.1.

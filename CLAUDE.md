@@ -34,7 +34,7 @@ Objective (O-001) > Problem (P-001) > Solution (S-001) > Sub-solution (S-001.1) 
 ## Drafts first (strict)
 
 - Anything discussed that could go into objectives.md, problems.md, or solutions.md (objectives, problems, solutions, sub-solutions, features), whether it comes from the user or from me, is written to the active draft file first.
-- Each push has its own draft file in `drafts/`, named after the version it will become: `draft-v1.0.md`, then `draft-v1.1.md`, and so on. The active draft is the one for the next version to be pushed (currently [drafts/draft-v1.0.md](drafts/draft-v1.0.md)). Drafts are never combined into one document.
+- Each push has its own draft file in `drafts/`, named after the version it will become: `draft-v1.0.md`, then `draft-v1.1.md`, and so on. The active draft is the one for the next version to be pushed (currently [drafts/draft-v0.1.md](drafts/draft-v0.1.md)). Drafts are never combined into one document.
 - Draft entries have no ID. Note the type, the likely home parent, and any other parents it also serves, as suggestions only.
 - Keep an "Overview tree" at the top of the active draft showing every entry and its home parent (objective > problem > solution > sub-solution > feature), with "also serves" links noted. Update it whenever an entry is added, changed, or removed.
 - Keep a mind map beside the active draft (see below). Update it in the same pass as the tree.
