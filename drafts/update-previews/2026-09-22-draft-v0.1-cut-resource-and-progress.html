@@ -80,6 +80,19 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 @media (max-width:860px){.gr{grid-template-columns:1fr !important;gap:20px}.lk{display:none}.col{justify-content:flex-start}}
 @media (prefers-reduced-motion:reduce){.e,.nd{transition:none}}
 @media print{.gr.on .e,.gr.on .nd{opacity:1}.nd.pin{box-shadow:none}}
+
+.nd.removing{border-style:dashed;border-color:oklch(0.60 0.20 25);background:oklch(0.955 0.05 25);box-shadow:0 0 0 1px oklch(0.60 0.20 25 / 0.4);opacity:.8}
+.nd.removing::after{content:"CUT";position:absolute;top:-8px;left:9px;font-size:0.625rem;font-weight:700;letter-spacing:.03em;color:oklch(0.48 0.20 25);background:oklch(0.985 0.002 265);padding:0 4px;border-radius:4px;border:1px solid oklch(0.60 0.20 25)}
+.e.cut{stroke:oklch(0.58 0.20 25);opacity:.9;stroke-width:1.5;stroke-dasharray:3 3}
+.sum{margin:18px 0 0;padding:14px 16px;border:1px dashed oklch(0.60 0.20 25);border-radius:12px;background:oklch(0.985 0.02 25);font-size:0.8125rem}
+.sum h2{margin:0 0 8px;font-size:0.8125rem;font-weight:600;color:oklch(0.48 0.20 25)}
+.sum ul{margin:4px 0 10px;padding-left:18px}
+.sum li{margin:2px 0}
+.sum .warn{color:oklch(0.48 0.20 25)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nd.removing{background:oklch(0.30 0.06 25)}:root:not([data-theme="light"]) .nd.removing::after{background:oklch(0.185 0.008 265)}:root:not([data-theme="light"]) .sum{background:oklch(0.26 0.05 25)}}
+:root[data-theme="dark"] .nd.removing{background:oklch(0.30 0.06 25)}
+:root[data-theme="dark"] .nd.removing::after{background:oklch(0.185 0.008 265)}
+:root[data-theme="dark"] .sum{background:oklch(0.26 0.05 25)}
 </style>
 </head>
 <body>
@@ -92,6 +105,7 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 <noscript>This map needs JavaScript to draw the links between items.</noscript>
 <div class="gr" id="gr"><svg class="lk" id="lk" aria-hidden="true"></svg></div>
 <div class="dt" id="dt"></div>
+<div class="sum" id="sum"></div>
 </div>
 
 <script>
@@ -107,8 +121,8 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
    =========================================================================== */
 
 var DATA={
-version:"Draft v0.1",
-note:"Objectives, problems, and a narrowed prototype scope: Landing page, Create and manage projects, Project manager home dashboard. Not yet pushed to the main documents",
+version:"Draft v0.1 — PREVIEW (scope cut)",
+note:"PREVIEW ONLY — not the real draft. Red dashed nodes marked CUT would be removed to narrow v0.1 to three solutions: Landing page, Create and manage projects, Project manager home dashboard",
 layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
@@ -136,9 +150,14 @@ nodes:[
 {id:"s13",layer:"s",short:"Landing page",full:"Landing page"},
 {id:"s9",layer:"s",short:"Create and manage",full:"Create and manage projects"},
 {id:"s12",layer:"s",short:"PM home dashboard",full:"Project manager home dashboard"},
+{id:"s2",layer:"s",short:"Resource assignment",full:"Resource assignment and workload tracking"},
+{id:"s3",layer:"s",short:"Phase progress",full:"Phase progress reporting"},
 
 {id:"u3",layer:"u",short:"Project phases",full:"Project phases"},
 {id:"u26",layer:"u",short:"At-a-glance status",full:"At-a-glance project status"},
+{id:"u2",layer:"u",short:"Resource pool",full:"Resource pool"},
+{id:"u12",layer:"u",short:"Assign to phases",full:"Assign resources to phases"},
+{id:"u11",layer:"u",short:"PM approves progress",full:"Project manager approval of progress"},
 
 {id:"f1",layer:"f",short:"Identify by role",full:"Identify the visitor by role"},
 {id:"f2",layer:"f",short:"Route PM to dashboard",full:"Route project manager to their dashboard"},
@@ -150,7 +169,16 @@ links:[
 ["p4","o3",1],["p5","o4",1],["p6","o4",1],["p6","o2",0],
 ["p7","o4",1],["p8","o1",1],["p9","o3",1],["p9","o4",0],
 ["p10","o2",1],["s13","p8",1],["s9","p8",1],["s12","p8",1],
-["s12","p2",0],["u3","s9",1],["u26","s12",1]
+["s12","p2",0],["s2","p2",1],["s2","p6",0],["s2","p7",0],
+["s3","p2",1],["s3","p3",0],["u3","s9",1],["u26","s12",1],
+["u2","s2",1],["u12","s2",1],["u12","s9",0],["u11","s3",1]
+],
+removing:[
+{id:"s2",type:"Solution"},
+{id:"s3",type:"Solution"},
+{id:"u2",type:"Sub-solution"},
+{id:"u12",type:"Sub-solution"},
+{id:"u11",type:"Sub-solution"}
 ]
 };
 
@@ -161,6 +189,8 @@ var T={},up={},dn={},nd={},pin=null;
 
 DATA.nodes.forEach(function(n){T[n.id]=n});
 DATA.links.forEach(function(e){(up[e[0]]=up[e[0]]||[]).push(e[1]);(dn[e[1]]=dn[e[1]]||[]).push(e[0])});
+var remType={};(DATA.removing||[]).forEach(function(r){remType[r.id]=r.type});
+function isCut(a,b){return remType.hasOwnProperty(a)||remType.hasOwnProperty(b)}
 
 document.getElementById("ttl").textContent=DATA.version;
 document.title="WorkFlow map — "+DATA.version;
@@ -172,13 +202,28 @@ DATA.layers.forEach(function(l){h+='<span class="kk '+l.tone+'">'+l.name.replace
 h+='<span class="sp"></span><span>Solid line: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: number of parents</span><span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
 lg.innerHTML=h;
 
+(function(){
+var sumEl=document.getElementById("sum");
+var byType={};
+(DATA.removing||[]).forEach(function(r){(byType[r.type]=byType[r.type]||[]).push(T[r.id].full)});
+var itemsHtml="<ul>";
+Object.keys(byType).sort().forEach(function(t){itemsHtml+="<li><b>"+t+" ("+byType[t].length+"):</b> "+byType[t].join(", ")+"</li>"});
+itemsHtml+="</ul>";
+var sideHtml="<ul>"
++"<li><b>Create and manage projects</b> loses team assignment (\u201cAssign resources to phases\u201d also served it), so in v0.1 the create form sets up the project and its phases but does not assign a team.</li>"
++"<li><b>Problem \u201cHard to see what each team member is working on\u201d</b> keeps its place but has no solution of its own in v0.1 \u2014 only the dashed link from the PM home dashboard still touches it.</li>"
++"<li>All removed items stay fully defined in <b>draft-v1.0.md</b>; this only narrows v0.1.</li>"
++"</ul>";
+sumEl.innerHTML="<h2>What this scope cut removes (5 items, 9 links)</h2>"+itemsHtml+"<h2>Side effects</h2>"+sideHtml;
+})();
+
 gr.style.gridTemplateColumns="repeat("+DATA.layers.length+",minmax(0,200px))";
 DATA.layers.forEach(function(l){
 var c=document.createElement("div");c.className="col";
 var ch=document.createElement("div");ch.className="ch";ch.textContent=l.name;c.appendChild(ch);
 DATA.nodes.filter(function(n){return n.layer===l.key}).forEach(function(n){
 var p=(up[n.id]||[]).length,b=document.createElement("button");
-b.type="button";b.className="nd "+l.tone+(p>1?" b":"");b.dataset.id=n.id;b.textContent=n.short;
+b.type="button";b.className="nd "+l.tone+(p>1?" b":"")+(remType.hasOwnProperty(n.id)?" removing":"");b.dataset.id=n.id;b.textContent=n.short;
 if(p>1){var s=document.createElement("span");s.className="bg";s.textContent=p;b.appendChild(s)}
 c.appendChild(b);nd[n.id]=b});
 gr.appendChild(c)});
@@ -210,7 +255,7 @@ var key=e[0]+"|"+e[1],x1=R[e[1]].r,y1=AR[key],x2=R[e[0]].l,y2=AL[key];
 var sb=Math.min(18,(x2-x1)*.22),a=x1+sb,b=x2-sb,m=(b-a)*.5;
 var d="M"+x1+" "+y1+"L"+a+" "+y1+"C"+(a+m)+" "+y1+" "+(b-m)+" "+y2+" "+b+" "+y2+"L"+x2+" "+y2;
 PATH[key]=d;
-s+='<path class="e'+(e[2]?"":" d")+'" d="'+d+'"/>'});
+s+='<path class="e'+(e[2]?"":" d")+(isCut(e[0],e[1])?" cut":"")+'" d="'+d+'"/>'});
 svg.innerHTML='<g>'+s+'</g><g id="hg"></g>'}
 
 function chain(id){var set={};set[id]=1;

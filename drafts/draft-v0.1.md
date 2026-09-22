@@ -9,7 +9,7 @@ Nothing here has an ID. Entries move to the main documents only after the user's
 
 Each entry has one **home parent** (where it lives and where its ID comes from) and may **also serve** other parents. Nothing is duplicated: an idea is written once and referenced from every parent it serves.
 
-Started as the full objectives and problems (carried over from [draft-v1.0.md](draft-v1.0.md), unchanged), then the first slice of solutions was chosen together: enough to create a project, see who's working on it, and report progress on it — one coherent chain, nothing half-built.
+Started as the full objectives and problems (carried over from [draft-v1.0.md](draft-v1.0.md), unchanged), then a first slice of solutions was chosen together, then narrowed to a tighter scope: enough to land in the tool, create a project, and see it on a personal dashboard — one coherent chain, nothing half-built. Resource assignment and phase progress reporting were cut from this scope and moved to [draft-v1.0.md](draft-v1.0.md).
 
 **Entry format**
 
@@ -41,11 +41,6 @@ Objective: Manage all department projects in one place
  │       └─ Sub-solution: At-a-glance project status
  ├─ Problem: No department-wide view of all projects
  └─ Problem: Hard to see what each team member is working on
-     ├─ Solution: Resource assignment and workload tracking
-     │   ├─ Sub-solution: Resource pool
-     │   └─ Sub-solution: Assign resources to phases
-     └─ Solution: Phase progress reporting
-         └─ Sub-solution: Project manager approval of progress
 
 Objective: Present accurate project status to stakeholders
  ├─ Problem: No single source of truth for project status
@@ -63,15 +58,12 @@ Objective: Protect the team from scope creep and project pressure
 
 "No department-wide view of all projects" has no solution yet — "Department portfolio view" stays deferred in draft-v1.0.md for now.
 
-**Links not shown above, added later:** a few of these items will also serve solutions that are still in [draft-v1.0.md](draft-v1.0.md) (not yet built). Those "also serves" links get added once v1.0 is pushed:
+**Links not shown above, added later:** this item will also serve a solution that is still in [draft-v1.0.md](draft-v1.0.md) (not yet built). That "also serves" link gets added once v1.0 is pushed:
 - Project phases → will also serve "Live project status timeline"
-- Resource pool → will also serve "Workload indicator on the department-wide view" and "Show the price of a change across all projects before it is confirmed"
-- Assign resources to phases → will also serve the same two
-- Project manager approval of progress → will also serve "Live project status timeline"
 
 ## Also serves
 
-Eight entries serve more than one parent.
+Five entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -80,9 +72,6 @@ Eight entries serve more than one parent.
 | Stakeholders don't see the pile-up of concurrent projects | Objective: Present accurate project status to stakeholders |
 | No history log for projects | Objective: Protect the team from scope creep and project pressure |
 | Project manager home dashboard | Problem: Hard to see what each team member is working on |
-| Resource assignment and workload tracking | Problems: Stakeholders don't see the pile-up of concurrent projects; The cost of priority shifts is invisible |
-| Phase progress reporting | Problem: No single source of truth for project status |
-| Assign resources to phases | Solution: Create and manage projects |
 
 ## Objectives
 
@@ -218,10 +207,10 @@ Eight entries serve more than one parent.
 
 ### Create and manage projects
 - Type: Solution
-- Description: One place where the project manager creates a project and manages it through its life. Creating a project sets its name, owning general department, business and GDAI project managers, start quarter (no end date needed yet), phases with planned time frames, and the assigned team. From then on the project is managed here: progress, changes, and launch. A project is always in one of four states: planned (with a future start date, or with no start date because no decision to start has been made yet), active, on hold, or launched. A project on hold always has a reason: waiting for business approval, waiting for a requirement, resources pulled to another project, or another reason. The reason and the days on hold show on the timeline. Some fields can be edited after creation; every edit is recorded in the project's history log. A launched project is done — on the year-long department-wide view it is marked as finished, distinct from active and planned projects.
+- Description: One place where the project manager creates a project and manages it through its life. Creating a project sets its name, owning general department, business and GDAI project managers, start quarter (no end date needed yet), and phases with planned time frames. From then on the project is managed here: progress, changes, and launch. A project is always in one of four states: planned (with a future start date, or with no start date because no decision to start has been made yet), active, on hold, or launched. A project on hold always has a reason: waiting for business approval, waiting for a requirement, resources pulled to another project, or another reason. The reason and the days on hold show on the timeline. Some fields can be edited after creation; every edit is recorded in the project's history log. A launched project is done — on the year-long department-wide view it is marked as finished, distinct from active and planned projects.
 - Home parent (suggestion only): Problem "No tool to create and manage projects"
 - Also serves (suggestion only): none
-- Open questions: none
+- Open questions: Team assignment ("Resource pool", "Assign resources to phases") is out of scope for v0.1 (see draft-v1.0.md) — the create form does not assign a team yet.
 
 ### Project phases
 - Type: Sub-solution
@@ -244,37 +233,3 @@ Eight entries serve more than one parent.
 - Also serves (suggestion only): none yet — will also serve "Live project status timeline" once that solution is pushed (see draft-v1.0.md).
 - Open questions: How is "most important" decided — a fixed rule, or does the project manager set it?
 
-### Resource assignment and workload tracking
-- Type: Solution
-- Description: Record which resources (developers, business analysts, tech leads, project managers) are assigned to which projects.
-- Home parent (suggestion only): Problem "Hard to see what each team member is working on"
-- Also serves (suggestion only): Problems "Stakeholders don't see the pile-up of concurrent projects" and "The cost of priority shifts is invisible" — both are calculated from this data.
-- Open questions: none
-
-### Resource pool
-- Type: Sub-solution
-- Description: All team members are kept in a resource pool: developers, business analysts, tech leads, and project managers. The user assigns them to projects for a time frame, so it is clear who is on what and when.
-- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
-- Also serves (suggestion only): none yet — will also serve "Workload indicator on the department-wide view" and "Show the price of a change across all projects before it is confirmed" once those solutions are pushed (see draft-v1.0.md).
-- Open questions: none
-
-### Assign resources to phases
-- Type: Sub-solution
-- Description: Resources are assigned not only to a project but to its phases: developers to the development phase, BAs to the analysis phase, and so on. Each phase has a planned time frame, and the days the person reports (confirmed by the project manager) are the exact time they actually worked on the project.
-- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
-- Also serves (suggestion only): Solution "Create and manage projects" — the team assigned at creation is the same pool assigned to phases. Depends on "Resource pool" and "Project phases", both in this draft. Will also serve "Workload indicator on the department-wide view" and "Show the price of a change across all projects before it is confirmed" once those solutions are pushed (see draft-v1.0.md).
-- Open questions: none
-
-### Phase progress reporting
-- Type: Solution
-- Description: Whoever is assigned to a phase reports on it: the days they actually spent and when the phase is done (for example, analysis planned for five days, the analyst reports three and marks it done). Developers report progress on the development phase as a share of the whole development (for example, a finished task worth 10%). Applies to every phase. Progress counts only after the project manager confirms it.
-- Home parent (suggestion only): Problem "Hard to see what each team member is working on"
-- Also serves (suggestion only): Problem "No single source of truth for project status" — this is what keeps the status current.
-- Open questions: none
-
-### Project manager approval of progress
-- Type: Sub-solution
-- Description: A team member's report on a phase (for example the analyst's three days, or a finished task worth 10% of development) is not counted until the project manager confirms it. Only confirmed progress moves the project's status. The project manager can also enter the report directly on the team member's behalf, for example when the information comes to them verbally.
-- Home parent (suggestion only): Solution "Phase progress reporting"
-- Also serves (suggestion only): none yet — will also serve "Live project status timeline" once that solution is pushed (see draft-v1.0.md).
-- Open questions: Who splits the development into weighted tasks (for example a task worth 10%), and when? The project manager at development planning?

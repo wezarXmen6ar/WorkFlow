@@ -108,7 +108,7 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 
 var DATA={
 version:"Draft v1.0",
-note:"Deferred — pending after v0.1. Create and manage projects, Project manager home dashboard, Resource assignment and workload tracking, and Phase progress reporting are defined in draft-v0.1.md; Landing page and its features are mirrored from draft-v0.1.md; kept here so remaining items still show their place",
+note:"Deferred — pending after v0.1. Create and manage projects and Project manager home dashboard are defined in draft-v0.1.md; Landing page and its features are mirrored from draft-v0.1.md; Resource assignment and workload tracking and Phase progress reporting (cut from v0.1’s narrowed scope) are defined here in full",
 layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
@@ -171,6 +171,9 @@ nodes:[
 {id:"u8",layer:"u",short:"Confirm before applying",full:"Price shown, confirm before applying"},
 {id:"u13",layer:"u",short:"Decision log",full:"Decision log"},
 {id:"u21",layer:"u",short:"Project priority",full:"Project priority"},
+{id:"u2",layer:"u",short:"Resource pool",full:"Resource pool"},
+{id:"u12",layer:"u",short:"Assign to phases",full:"Assign resources to phases"},
+{id:"u11",layer:"u",short:"PM approves progress",full:"Project manager approval of progress"},
 
 {id:"f1",layer:"f",short:"Identify by role",full:"Identify the visitor by role"},
 {id:"f2",layer:"f",short:"Route PM to dashboard",full:"Route project manager to their dashboard"},
@@ -198,7 +201,10 @@ links:[
 ["u24","s11",0],["s12","p8",1],["s12","p2",0],["u25","s12",1],
 ["u27","s9",1],["u28","s9",1],["u28","s4",0],["u29","s1",1],
 ["u29","s12",0],["u29","s2",0],["s13","p8",1],["f1","s13",1],
-["f2","s13",1],["f3","s13",1],["s1","s13",0],["s11","s13",0]
+["f2","s13",1],["f3","s13",1],["s1","s13",0],["s11","s13",0],
+["u2","s2",1],["u12","s2",1],["u12","s9",0],["u11","s3",1],
+["u11","s4",0],["u2","s7",0],["u2","s8",0],["u12","s7",0],
+["u12","s8",0]
 ]
 };
 

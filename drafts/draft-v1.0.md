@@ -42,8 +42,13 @@ Objective: Manage all department projects in one place
  │       ├─ Sub-solution: Import existing Excel data
  │       └─ Sub-solution: Search and filter the project list
  └─ Problem: Hard to see what each team member is working on
-     ├─ Sub-solution: Leave and absences (home: Solution "Resource assignment and workload tracking" — now in draft-v0.1.md)
-     └─ Sub-solution: Person view (home: Solution "Resource assignment and workload tracking" — now in draft-v0.1.md)
+     ├─ Solution: Resource assignment and workload tracking
+     │   ├─ Sub-solution: Resource pool
+     │   ├─ Sub-solution: Assign resources to phases
+     │   ├─ Sub-solution: Leave and absences
+     │   └─ Sub-solution: Person view
+     └─ Solution: Phase progress reporting
+         └─ Sub-solution: Project manager approval of progress
 
 Objective: Present accurate project status to stakeholders
  ├─ Problem: No single source of truth for project status
@@ -82,13 +87,13 @@ Objective: Protect the team from scope creep and project pressure
          └─ Sub-solution: Project priority
 ```
 
-Nine items moved out of this draft into [draft-v0.1.md](draft-v0.1.md) this session — chosen as the first prototype slice: Create and manage projects, Project phases, Project manager home dashboard, At-a-glance project status, Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress. Their full entries now live there, not here.
+Nine items moved out of this draft into [draft-v0.1.md](draft-v0.1.md) this session — chosen as the first prototype slice: Create and manage projects, Project phases, Project manager home dashboard, At-a-glance project status, Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress. Five of those — Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress — were later cut from v0.1's narrowed scope and moved back here with full entries, restoring their "also serves" links to solutions that live in this same draft.
 
 All objectives and problems also moved to draft-v0.1.md (the active draft) — referenced here by name only.
 
 ## Also serves
 
-Twenty entries serve more than one parent.
+Twenty-five entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -112,6 +117,11 @@ Twenty entries serve more than one parent.
 | Price shown, confirm before applying | Solution: Show the impact of new requirements before work starts |
 | Search and filter the project list | Solutions: Project manager home dashboard; Resource assignment and workload tracking |
 | Archive and permanent delete | Solution: Live project status timeline |
+| Resource assignment and workload tracking | Problems: Stakeholders don't see the pile-up of concurrent projects; The cost of priority shifts is invisible |
+| Resource pool | Solutions: Workload indicator on the department-wide view; Show the price of a change across all projects before it is confirmed |
+| Assign resources to phases | Solutions: Create and manage projects; Workload indicator on the department-wide view; Show the price of a change across all projects before it is confirmed |
+| Phase progress reporting | Problem: No single source of truth for project status |
+| Project manager approval of progress | Solution: Live project status timeline |
 
 ## Objectives and problems
 
@@ -213,16 +223,51 @@ All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the ac
 ### Leave and absences
 - Type: Sub-solution
 - Description: Leave and absences are entered by hand per person in the tool, with no integration to any other system. Capacity excludes them, and assigning someone to a phase during their leave shows a warning.
-- Home parent (suggestion only): Solution "Resource assignment and workload tracking" — now in draft-v0.1.md.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
 - Also serves (suggestion only): Solution "Workload indicator on the department-wide view" — capacity is worked out after leave.
 - Open questions: none
 
 ### Person view
 - Type: Sub-solution
 - Description: Clicking anyone in the resource pool shows their timeline: projects, phases, and planned against actual days. For project managers it also shows the reports waiting for their confirmation. Only GDAI staff see it; stakeholders never see the names of the resources.
-- Home parent (suggestion only): Solution "Resource assignment and workload tracking" — now in draft-v0.1.md.
-- Also serves (suggestion only): Solution "Phase progress reporting" — now in draft-v0.1.md; it shows the reports waiting for confirmation.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
+- Also serves (suggestion only): Solution "Phase progress reporting" — it shows the reports waiting for confirmation.
 - Open questions: none
+
+### Resource assignment and workload tracking
+- Type: Solution
+- Description: Record which resources (developers, business analysts, tech leads, project managers) are assigned to which projects.
+- Home parent (suggestion only): Problem "Hard to see what each team member is working on"
+- Also serves (suggestion only): Problems "Stakeholders don't see the pile-up of concurrent projects" and "The cost of priority shifts is invisible" — both are calculated from this data.
+- Open questions: none
+
+### Resource pool
+- Type: Sub-solution
+- Description: All team members are kept in a resource pool: developers, business analysts, tech leads, and project managers. The user assigns them to projects for a time frame, so it is clear who is on what and when.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
+- Also serves (suggestion only): Solutions "Workload indicator on the department-wide view" and "Show the price of a change across all projects before it is confirmed" — both read capacity from the pool.
+- Open questions: none
+
+### Assign resources to phases
+- Type: Sub-solution
+- Description: Resources are assigned not only to a project but to its phases: developers to the development phase, BAs to the analysis phase, and so on. Each phase has a planned time frame, and the days the person reports (confirmed by the project manager) are the exact time they actually worked on the project.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
+- Also serves (suggestion only): Solutions "Workload indicator on the department-wide view", "Show the price of a change across all projects before it is confirmed", and "Create and manage projects" (see draft-v0.1.md) — the first two need the real time each person spends per phase; the third assigns the team when a project is created. Depends on "Resource pool" and "Project phases" (the latter in draft-v0.1.md).
+- Open questions: none
+
+### Phase progress reporting
+- Type: Solution
+- Description: Whoever is assigned to a phase reports on it: the days they actually spent and when the phase is done (for example, analysis planned for five days, the analyst reports three and marks it done). Developers report progress on the development phase as a share of the whole development (for example, a finished task worth 10%). Applies to every phase. Progress counts only after the project manager confirms it.
+- Home parent (suggestion only): Problem "Hard to see what each team member is working on"
+- Also serves (suggestion only): Problem "No single source of truth for project status" — this is what keeps the status current.
+- Open questions: none
+
+### Project manager approval of progress
+- Type: Sub-solution
+- Description: A team member's report on a phase (for example the analyst's three days, or a finished task worth 10% of development) is not counted until the project manager confirms it. Only confirmed progress moves the project's status. The project manager can also enter the report directly on the team member's behalf, for example when the information comes to them verbally.
+- Home parent (suggestion only): Solution "Phase progress reporting"
+- Also serves (suggestion only): Solution "Live project status timeline" — approved progress is what the timeline shows.
+- Open questions: Who splits the development into weighted tasks (for example a task worth 10%), and when? The project manager at development planning?
 
 ### Live project status timeline
 - Type: Solution
