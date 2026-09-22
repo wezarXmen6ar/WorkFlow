@@ -15,6 +15,7 @@
 --t4bg:oklch(0.975 0.003 265);--t4tx:oklch(0.42 0.010 265);--t4ln:oklch(0.79 0.010 265);
 --t5bg:oklch(0.955 0.040 75);--t5tx:oklch(0.44 0.100 75);--t5ln:oklch(0.80 0.070 75);
 --focus:oklch(0.47 0.200 268);
+--nw1:oklch(0.60 0.15 155);--nw2:oklch(0.62 0.15 60);--rp:oklch(0.53 0.20 300);
 --radius:8px;
 --ease:cubic-bezier(0.22,1,0.36,1);
 }
@@ -28,6 +29,7 @@
 --t4bg:oklch(0.275 0.010 265);--t4tx:oklch(0.800 0.008 265);--t4ln:oklch(0.450 0.012 265);
 --t5bg:oklch(0.300 0.055 75);--t5tx:oklch(0.880 0.080 75);--t5ln:oklch(0.500 0.090 75);
 --focus:oklch(0.87 0.140 250);
+--nw1:oklch(0.80 0.15 155);--nw2:oklch(0.82 0.14 75);--rp:oklch(0.77 0.17 300);
 }}
 :root[data-theme="dark"]{
 --bg:oklch(0.185 0.008 265);--s0:oklch(0.155 0.008 265);--s1:oklch(0.235 0.010 265);--s2:oklch(0.275 0.010 265);
@@ -39,6 +41,7 @@
 --t4bg:oklch(0.275 0.010 265);--t4tx:oklch(0.800 0.008 265);--t4ln:oklch(0.450 0.012 265);
 --t5bg:oklch(0.300 0.055 75);--t5tx:oklch(0.880 0.080 75);--t5ln:oklch(0.500 0.090 75);
 --focus:oklch(0.87 0.140 250);
+--nw1:oklch(0.80 0.15 155);--nw2:oklch(0.82 0.14 75);--rp:oklch(0.77 0.17 300);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -71,6 +74,24 @@ h1{margin:0;font-size:1.25rem;font-weight:500;letter-spacing:-0.01em}
 .t4{background:var(--t4bg);color:var(--t4tx);border-color:var(--t4ln)}
 .t5{background:var(--t5bg);color:var(--t5tx);border-color:var(--t5ln)}
 .bg{position:absolute;top:7px;right:7px;width:17px;height:17px;border-radius:50%;font-size:0.6875rem;line-height:16px;text-align:center;background:var(--bg);border:1px solid currentColor}
+.nd.nw1{box-shadow:0 0 0 2px var(--nw1)}
+.nd.nw2{box-shadow:0 0 0 2px var(--nw2)}
+.nd.nw1.pin,.nd.nw2.pin{box-shadow:0 0 0 2px var(--focus)}
+.tag{position:absolute;top:-8px;left:9px;font-size:0.625rem;line-height:1;padding:2px 5px;border-radius:5px;color:#fff;font-weight:500;letter-spacing:.02em}
+.tag1{background:var(--nw1)}
+.tag2{background:var(--nw2)}
+.e.n1{stroke:var(--nw1);stroke-width:2;opacity:.85}
+.e.n2{stroke:var(--nw2);stroke-width:2;opacity:.85}
+.e.rp{stroke:var(--rp);stroke-width:2.3;opacity:.9}
+.gr.on .e.n1,.gr.on .e.n2,.gr.on .e.rp{opacity:.4}
+.key{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:var(--radius);font-size:0.75rem;border:1px solid}
+.key::before{content:"";width:9px;height:9px;border-radius:50%;display:inline-block}
+.key.k1{border-color:var(--nw1);color:var(--nw1)}
+.key.k1::before{background:var(--nw1)}
+.key.k2{border-color:var(--nw2);color:var(--nw2)}
+.key.k2::before{background:var(--nw2)}
+.key.k3{border-color:var(--rp);color:var(--rp)}
+.key.k3::before{background:var(--rp)}
 .dt{margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--s1);min-height:64px;font-size:0.875rem}
 .dt .ttl{display:block;margin-bottom:5px}
 .dt .sv{display:block;font-size:0.8125rem;color:var(--ink2);margin-top:2px}
@@ -96,19 +117,17 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 
 <script>
 /* ===========================================================================
-   TEMPLATE — to make the map for a new push, copy this file and replace only
-   the DATA object below. Nothing under "RENDER" needs to change.
-
-     layers : the columns, left to right. tone t1..t5 picks the colour.
-     nodes  : id, layer key, short label (2-4 words), full title.
-     links  : [child, parent, 1 = home parent (solid) | 0 = also serves (dashed)]
-
-   Every node needs exactly one home-parent link. Extra links are "also serves".
+   PREVIEW ONLY — temporary comparison map, not the real draft-v0.2 map.
+   Shows draft-v0.2 = a copy of draft-v0.1 + the deferred create-project detail.
+     green ring  (nw1) : new item, also going into v0.1 (in scope)
+     amber ring  (nw2) : new item, v0.2 only (deferred)
+     green/amber line  : new link
+     violet line (rp)  : new link between two items that already existed
    =========================================================================== */
 
 var DATA={
-version:"Draft v0.1",
-note:"Objectives, problems, and a narrowed prototype scope: Landing page, Create and manage projects, Project manager home dashboard. Not yet pushed to the main documents",
+version:"Draft v0.2 — preview vs v0.1",
+note:"Preview only, not saved. draft-v0.2 = copy of draft-v0.1 + full create-project detail. Attachments, Updates log and Main-project grouping are kept here in full; draft-v1.0 is left untouched (its overlap is reconciled when v1.0 is built)",
 layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
@@ -136,6 +155,9 @@ nodes:[
 {id:"s13",layer:"s",short:"Landing page",full:"Landing page"},
 {id:"s9",layer:"s",short:"Create and manage",full:"Create and manage projects"},
 {id:"s12",layer:"s",short:"PM home dashboard",full:"Project manager home dashboard"},
+{id:"s20",layer:"s",short:"Project attachments",full:"Project attachments",nw:2},
+{id:"s21",layer:"s",short:"Project updates log",full:"Project updates log",nw:2},
+{id:"s22",layer:"s",short:"Main-project grouping",full:"Main-project grouping (tag)",nw:2},
 
 {id:"u3",layer:"u",short:"Project phases",full:"Project phases"},
 {id:"u26",layer:"u",short:"At-a-glance status",full:"At-a-glance project status"},
@@ -143,18 +165,46 @@ nodes:[
 {id:"f1",layer:"f",short:"Identify by role",full:"Identify the visitor by role"},
 {id:"f2",layer:"f",short:"Route PM to dashboard",full:"Route project manager to their dashboard"},
 {id:"f3",layer:"f",short:"Placeholder, other roles",full:"Placeholder for other roles"},
-{id:"f4",layer:"f",short:"Core details form",full:"Create a project — core details"},
-{id:"f5",layer:"f",short:"Definition tables",full:"Definition tables: scope, problem statements, objectives"},
-{id:"f6",layer:"f",short:"Timeline builder",full:"Timeline / phase builder"}
+{id:"f4",layer:"f",short:"Core details form",full:"Create a project — core details",nw:1},
+{id:"f5",layer:"f",short:"Definition tables",full:"Definition tables: scope, problem statements, objectives",nw:1},
+{id:"f7",layer:"f",short:"PRJ reference no.",full:"JIRA / PRJ reference number (deferred)",nw:2},
+{id:"f6",layer:"f",short:"Timeline builder",full:"Timeline / phase builder",nw:1},
+{id:"f8",layer:"f",short:"Attachment types",full:"Attachment type: BRD, analysis doc, CR, CR approval, RFP, RFI, meeting minutes (extensible)",nw:2},
+{id:"f9",layer:"f",short:"Link file to phase",full:"Link attachment to a phase (optional)",nw:2},
+{id:"f13",layer:"f",short:"Dated attachment",full:"Optional attachment date, shown on the timeline",nw:2},
+{id:"f10",layer:"f",short:"Dated update entry",full:"Add update: date + text + optional attachment",nw:2},
+{id:"f11",layer:"f",short:"Newest-first order",full:"Updates ordered newest-first by date",nw:2},
+{id:"f12",layer:"f",short:"Standalone or main",full:"Choose standalone or part of a main project",nw:2},
+{id:"f14",layer:"f",short:"Add main inline",full:"Add a new main project to the list inline",nw:2}
 ],
 links:[
-["f1","s13",1],["f2","s13",1],["f2","s12",0],["f3","s13",1],["p1","o1",1],
-["p2","o1",1],["p2","o4",0],["p3","o2",1],["p3","o1",0],
-["p4","o3",1],["p5","o4",1],["p6","o4",1],["p6","o2",0],
-["p7","o4",1],["p8","o1",1],["p9","o3",1],["p9","o4",0],
-["p10","o2",1],["s13","p8",1],["s9","p8",1],["s12","p8",1],
-["s12","p2",0],["u3","s9",1],["u26","s12",1],
-["f4","s9",1],["f5","s9",1],["f6","u3",1],["s9","p4",0]
+["f1","s13",1],["f2","s13",1],["f2","s12",0],["f3","s13",1],
+["p1","o1",1],
+["p2","o1",1],["p2","o4",0],
+["p3","o2",1],["p3","o1",0],
+["p4","o3",1],
+["p5","o4",1],
+["p6","o4",1],["p6","o2",0],
+["p7","o4",1],
+["p8","o1",1],
+["p9","o3",1],["p9","o4",0],
+["p10","o2",1],
+["s13","p8",1],
+["s9","p8",1],
+["s12","p8",1],["s12","p2",0],
+["u3","s9",1],
+["u26","s12",1],
+
+["f4","s9",1,"n1"],["f5","s9",1,"n1"],["f6","u3",1,"n1"],
+["s9","p4",0,"rp"],
+
+["s20","p4",1,"n2"],["s20","p9",0,"n2"],
+["s21","p9",1,"n2"],
+["s22","p1",1,"n2"],
+["f7","s9",1,"n2"],
+["f8","s20",1,"n2"],["f9","s20",1,"n2"],["f13","s20",1,"n2"],
+["f10","s21",1,"n2"],["f11","s21",1,"n2"],
+["f12","s22",1,"n2"],["f14","s22",1,"n2"]
 ]
 };
 
@@ -173,7 +223,9 @@ document.getElementById("mta").textContent=[DATA.note,DATA.nodes.length+" items"
 
 var lg=document.getElementById("lgd"),h="";
 DATA.layers.forEach(function(l){h+='<span class="kk '+l.tone+'">'+l.name.replace(/s$/,"")+"</span>"});
-h+='<span class="sp"></span><span>Solid line: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: number of parents</span><span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
+h+='<span class="sp"></span><span>Solid: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: parents</span>';
+h+='<span class="sp"></span><span class="key k1">new · also in v0.1</span><span class="key k2">new · v0.2 only</span><span class="key k3">new link, both existed</span>';
+h+='<span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
 lg.innerHTML=h;
 
 gr.style.gridTemplateColumns="repeat("+DATA.layers.length+",minmax(0,200px))";
@@ -182,12 +234,13 @@ var c=document.createElement("div");c.className="col";
 var ch=document.createElement("div");ch.className="ch";ch.textContent=l.name;c.appendChild(ch);
 DATA.nodes.filter(function(n){return n.layer===l.key}).forEach(function(n){
 var p=(up[n.id]||[]).length,b=document.createElement("button");
-b.type="button";b.className="nd "+l.tone+(p>1?" b":"");b.dataset.id=n.id;b.textContent=n.short;
+b.type="button";b.className="nd "+l.tone+(p>1?" b":"")+(n.nw?" nw"+n.nw:"");b.dataset.id=n.id;b.textContent=n.short;
 if(p>1){var s=document.createElement("span");s.className="bg";s.textContent=p;b.appendChild(s)}
+if(n.nw){var tg=document.createElement("span");tg.className="tag tag"+n.nw;tg.textContent="NEW";b.appendChild(tg)}
 c.appendChild(b);nd[n.id]=b});
 gr.appendChild(c)});
 
-var DEF='<span class="st">'+DATA.nodes.length+" items, "+DATA.links.length+' links. <b>'+shared+" of them serve more than one parent</b> and carry a badge. Each idea is written once and reused, never duplicated.</span>";
+var DEF='<span class="st">'+DATA.nodes.length+" items, "+DATA.links.length+' links. <b>'+shared+" of them serve more than one parent</b> and carry a badge. Green = new and also in v0.1, amber = new in v0.2 only, violet line = a new link between two items that already existed.</span>";
 
 var PATH={};
 
@@ -214,7 +267,7 @@ var key=e[0]+"|"+e[1],x1=R[e[1]].r,y1=AR[key],x2=R[e[0]].l,y2=AL[key];
 var sb=Math.min(18,(x2-x1)*.22),a=x1+sb,b=x2-sb,m=(b-a)*.5;
 var d="M"+x1+" "+y1+"L"+a+" "+y1+"C"+(a+m)+" "+y1+" "+(b-m)+" "+y2+" "+b+" "+y2+"L"+x2+" "+y2;
 PATH[key]=d;
-s+='<path class="e'+(e[2]?"":" d")+'" d="'+d+'"/>'});
+s+='<path class="e'+(e[2]?"":" d")+(e[3]?" "+e[3]:"")+'" d="'+d+'"/>'});
 svg.innerHTML='<g>'+s+'</g><g id="hg"></g>'}
 
 function chain(id){var set={};set[id]=1;

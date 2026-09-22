@@ -1,7 +1,7 @@
-# Draft for v0.1
+# Draft for v0.2
 
-**Status:** Active. This draft will be pushed as v0.1.
-**Map:** [draft-v0.1-map.html](draft-v0.1-map.html)
+**Status:** Pending. Deferred until after v0.1 is pushed and its prototype slice is built; not the active draft.
+**Map:** [draft-v0.2-map.html](draft-v0.2-map.html)
 
 Staging area for anything discussed that could go into [objectives.md](../objectives.md), [problems.md](../problems.md), or [solutions.md](../solutions.md).
 
@@ -9,7 +9,7 @@ Nothing here has an ID. Entries move to the main documents only after the user's
 
 Each entry has one **home parent** (where it lives and where its ID comes from) and may **also serve** other parents. Nothing is duplicated: an idea is written once and referenced from every parent it serves.
 
-Started as the full objectives and problems (carried over from [draft-v1.0.md](draft-v1.0.md), unchanged), then a first slice of solutions was chosen together, then narrowed to a tighter scope: enough to land in the tool, create a project, and see it on a personal dashboard — one coherent chain, nothing half-built. Resource assignment and phase progress reporting were cut from this scope and moved to [draft-v1.0.md](draft-v1.0.md).
+Started as a full copy of [draft-v0.1.md](draft-v0.1.md), taken once the "Create and manage projects" form was fully specced with the user. Everything from that spec that didn't fit v0.1's narrowed scope — attachments, project updates, and main-project grouping — was kept here in full detail instead of being dropped, so nothing discussed is lost. These three overlap with solutions already drafted in [draft-v1.0.md](draft-v1.0.md) (Central project file repository / Attach documents to projects and phases, Project history log, Department portfolio view / Search and filter the project list); draft-v1.0.md was left untouched on purpose, and that overlap is reconciled when v1.0 is worked on.
 
 **Entry format**
 
@@ -38,11 +38,15 @@ Objective: Manage all department projects in one place
  │   ├─ Solution: Create and manage projects
  │   │   ├─ Feature: Create a project — core details
  │   │   ├─ Feature: Definition tables: scope, problem statements, objectives
+ │   │   ├─ Feature: JIRA / PRJ reference number
  │   │   └─ Sub-solution: Project phases
  │   │       └─ Feature: Timeline / phase builder
  │   └─ Solution: Project manager home dashboard
  │       └─ Sub-solution: At-a-glance project status
  ├─ Problem: No department-wide view of all projects
+ │   └─ Solution: Main-project grouping
+ │       ├─ Feature: Standalone or part of a main project
+ │       └─ Feature: Add a main project inline
  └─ Problem: Hard to see what each team member is working on
 
 Objective: Present accurate project status to stakeholders
@@ -51,7 +55,14 @@ Objective: Present accurate project status to stakeholders
 
 Objective: Document everything about each project
  ├─ Problem: Project files and context depend on each project manager
+ │   └─ Solution: Project attachments
+ │       ├─ Feature: Attachment types
+ │       ├─ Feature: Link attachment to a phase
+ │       └─ Feature: Optional attachment date
  └─ Problem: No history log for projects
+     └─ Solution: Project updates log
+         ├─ Feature: Dated update entry
+         └─ Feature: Newest-first ordering
 
 Objective: Protect the team from scope creep and project pressure
  ├─ Problem: Requirements keep being added with no visible cost
@@ -59,14 +70,14 @@ Objective: Protect the team from scope creep and project pressure
  └─ Problem: The cost of priority shifts is invisible
 ```
 
-"No department-wide view of all projects" has no solution yet — "Department portfolio view" stays deferred in draft-v1.0.md for now.
+"No department-wide view of all projects" now has a lightweight solution — the main-project grouping tag. The full "Department portfolio view" stays deferred in draft-v1.0.md.
 
 **Links not shown above, added later:** this item will also serve a solution that is still in [draft-v1.0.md](draft-v1.0.md) (not yet built). That "also serves" link gets added once v1.0 is pushed:
 - Project phases → will also serve "Live project status timeline"
 
 ## Also serves
 
-Seven entries serve more than one parent.
+Eight entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -77,6 +88,7 @@ Seven entries serve more than one parent.
 | Project manager home dashboard | Problem: Hard to see what each team member is working on |
 | Route project manager to their dashboard | Solution: Project manager home dashboard |
 | Create and manage projects | Problem: Project files and context depend on each project manager |
+| Project attachments | Problem: No history log for projects |
 
 ## Objectives
 
@@ -231,6 +243,13 @@ Seven entries serve more than one parent.
 - Also serves (suggestion only): none
 - Open questions: none
 
+### JIRA / PRJ reference number
+- Type: Feature
+- Description: A free-text field on the create-project form to store the project's JIRA/PRJ reference number, for reference only — no integration, no pulled status. Distinct from "Jira link for deployment and security testing" (see draft-v1.0.md), which pulls status for those two phases.
+- Home parent (suggestion only): Solution "Create and manage projects"
+- Also serves (suggestion only): none
+- Open questions: none
+
 ### Project phases
 - Type: Sub-solution
 - Description: Phases are fully flexible: nothing is always the same, and a small project can skip some. When creating a project, the project manager adds its phases and a planned time frame for each (for example, analysis: five days). Each project picks and orders its own phases (and can add custom ones), and the timeline shows them. The project's end date never moves automatically when a phase takes fewer or more days than planned. Known phases: requirements gathering, BA analysis document (approved by the business user), development planning (optional; sets the timeline and end date), development, UAT, security testing, deployment, pilot on a small sample. Security testing and deployment are mandatory in the department's process.
@@ -259,3 +278,72 @@ Seven entries serve more than one parent.
 - Also serves (suggestion only): none yet — will also serve "Live project status timeline" once that solution is pushed (see draft-v1.0.md).
 - Open questions: How is "most important" decided — a fixed rule, or does the project manager set it?
 
+### Main-project grouping
+- Type: Solution
+- Description: A lightweight grouping tag so projects can be filed under a shared "main project" and filtered together later. Not a program roll-up view — that stays with "Department portfolio view" (see draft-v1.0.md) if and when it's built.
+- Home parent (suggestion only): Problem "No department-wide view of all projects"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Standalone or part of a main project
+- Type: Feature
+- Description: At the top of the create-project form, the project manager chooses whether the project is standalone or part of a main project. If part of one, they pick it from a dropdown.
+- Home parent (suggestion only): Solution "Main-project grouping"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Add a main project inline
+- Type: Feature
+- Description: If the main project doesn't yet exist in the dropdown, it can be added to the list right there, on the spot, without leaving the form.
+- Home parent (suggestion only): Solution "Main-project grouping"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Project attachments
+- Type: Solution
+- Description: An attachments table on the create/manage project screen. Add a file, choose what it is from a dropdown, optionally link it to a phase, optionally give it a date. Each added attachment appears as a row in the table.
+- Home parent (suggestion only): Problem "Project files and context depend on each project manager"
+- Also serves (suggestion only): Problem "No history log for projects" — every attachment, with its date, is part of the project's record.
+- Open questions: none
+
+### Attachment types
+- Type: Feature
+- Description: A dropdown of what the attachment is, seeded with types generic to IT projects: BRD, analysis document, CR, CR approval, RFP, RFI, meeting minutes. Extensible.
+- Home parent (suggestion only): Solution "Project attachments"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Link attachment to a phase
+- Type: Feature
+- Description: When adding an attachment, it can optionally be linked to one of the project's phases — for example, the BA analysis document linked to the analysis phase.
+- Home parent (suggestion only): Solution "Project attachments"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Optional attachment date
+- Type: Feature
+- Description: When adding an attachment, a date can optionally be given for it — when it was created or officially approved, not necessarily when it was uploaded. This date is what places it on the timeline.
+- Home parent (suggestion only): Solution "Project attachments"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Project updates log
+- Type: Solution
+- Description: An updates table on the create/manage project screen. The project manager picks a date, writes the update in a text box, optionally attaches a file, and adds it to the table.
+- Home parent (suggestion only): Problem "No history log for projects"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Dated update entry
+- Type: Feature
+- Description: Each update is a date, a free-text update, and an optional attachment, added with one click.
+- Home parent (suggestion only): Solution "Project updates log"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Newest-first ordering
+- Type: Feature
+- Description: The updates table is ordered by the update's own date, not by the order they were entered — latest to oldest.
+- Home parent (suggestion only): Solution "Project updates log"
+- Also serves (suggestion only): none
+- Open questions: none

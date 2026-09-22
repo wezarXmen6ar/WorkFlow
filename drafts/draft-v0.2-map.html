@@ -107,8 +107,8 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
    =========================================================================== */
 
 var DATA={
-version:"Draft v0.1",
-note:"Objectives, problems, and a narrowed prototype scope: Landing page, Create and manage projects, Project manager home dashboard. Not yet pushed to the main documents",
+version:"Draft v0.2",
+note:"Copy of draft-v0.1 plus the create-project detail that didn't fit v0.1's scope: Project attachments, Project updates log, Main-project grouping. Overlaps with draft-v1.0.md are reconciled when v1.0 is worked on",
 layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
@@ -136,6 +136,9 @@ nodes:[
 {id:"s13",layer:"s",short:"Landing page",full:"Landing page"},
 {id:"s9",layer:"s",short:"Create and manage",full:"Create and manage projects"},
 {id:"s12",layer:"s",short:"PM home dashboard",full:"Project manager home dashboard"},
+{id:"s22",layer:"s",short:"Main-project grouping",full:"Main-project grouping"},
+{id:"s20",layer:"s",short:"Project attachments",full:"Project attachments"},
+{id:"s21",layer:"s",short:"Project updates log",full:"Project updates log"},
 
 {id:"u3",layer:"u",short:"Project phases",full:"Project phases"},
 {id:"u26",layer:"u",short:"At-a-glance status",full:"At-a-glance project status"},
@@ -145,16 +148,41 @@ nodes:[
 {id:"f3",layer:"f",short:"Placeholder, other roles",full:"Placeholder for other roles"},
 {id:"f4",layer:"f",short:"Core details form",full:"Create a project — core details"},
 {id:"f5",layer:"f",short:"Definition tables",full:"Definition tables: scope, problem statements, objectives"},
-{id:"f6",layer:"f",short:"Timeline builder",full:"Timeline / phase builder"}
+{id:"f7",layer:"f",short:"PRJ reference no.",full:"JIRA / PRJ reference number"},
+{id:"f6",layer:"f",short:"Timeline builder",full:"Timeline / phase builder"},
+{id:"f12",layer:"f",short:"Standalone or main",full:"Standalone or part of a main project"},
+{id:"f14",layer:"f",short:"Add main inline",full:"Add a main project inline"},
+{id:"f8",layer:"f",short:"Attachment types",full:"Attachment types"},
+{id:"f9",layer:"f",short:"Link file to phase",full:"Link attachment to a phase"},
+{id:"f13",layer:"f",short:"Dated attachment",full:"Optional attachment date"},
+{id:"f10",layer:"f",short:"Dated update entry",full:"Dated update entry"},
+{id:"f11",layer:"f",short:"Newest-first order",full:"Newest-first ordering"}
 ],
 links:[
-["f1","s13",1],["f2","s13",1],["f2","s12",0],["f3","s13",1],["p1","o1",1],
-["p2","o1",1],["p2","o4",0],["p3","o2",1],["p3","o1",0],
-["p4","o3",1],["p5","o4",1],["p6","o4",1],["p6","o2",0],
-["p7","o4",1],["p8","o1",1],["p9","o3",1],["p9","o4",0],
-["p10","o2",1],["s13","p8",1],["s9","p8",1],["s12","p8",1],
-["s12","p2",0],["u3","s9",1],["u26","s12",1],
-["f4","s9",1],["f5","s9",1],["f6","u3",1],["s9","p4",0]
+["f1","s13",1],["f2","s13",1],["f2","s12",0],["f3","s13",1],
+["p1","o1",1],
+["p2","o1",1],["p2","o4",0],
+["p3","o2",1],["p3","o1",0],
+["p4","o3",1],
+["p5","o4",1],
+["p6","o4",1],["p6","o2",0],
+["p7","o4",1],
+["p8","o1",1],
+["p9","o3",1],["p9","o4",0],
+["p10","o2",1],
+["s13","p8",1],
+["s9","p8",1],["s9","p4",0],
+["s12","p8",1],["s12","p2",0],
+["u3","s9",1],
+["u26","s12",1],
+["f4","s9",1],["f5","s9",1],["f7","s9",1],
+["f6","u3",1],
+["s22","p1",1],
+["f12","s22",1],["f14","s22",1],
+["s20","p4",1],["s20","p9",0],
+["f8","s20",1],["f9","s20",1],["f13","s20",1],
+["s21","p9",1],
+["f10","s21",1],["f11","s21",1]
 ]
 };
 
