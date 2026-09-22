@@ -11,23 +11,8 @@ What the prototype (POC) must show and how it is judged. This is project content
 
 ## Build order
 
-Names refer to the solutions in the current draft. Nothing is built until it exists as a feature with an ID.
-
-Build first, the core chain:
-1. Department portfolio view, with the yearly plan by quarter
-2. Project timeline with flexible phases and planned time frames
-3. Resource pool, with people assigned to phases
-4. Price of a change: automatic pull and delay, animated impact, confirm before applying
-5. Workload indicator
-6. Project's life span, the day-by-day replay of a project (the signature visual)
-
-Build second:
-- Impact of new requirements
-- Phase progress reporting and project manager confirmation
-- Role views: decision maker sees all projects, business user sees their own department's
-
-Mock or leave out:
-- Excel import, Jira link, and the file repository
+The build order follows the push order of the drafts (see [versions/log.md](versions/log.md)) — whichever version was pushed first is built first. Nothing is built until it exists as a feature with an ID in solutions.md.
 
 ## Related rules
+- Mock or leave out, wherever they appear: Excel import, Jira link, and the file repository.
 - Stakeholder views are read-only. See the solution "Access by role and owning general department" in the current draft.
