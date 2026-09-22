@@ -63,7 +63,7 @@ Objective: Protect the team from scope creep and project pressure
 
 ## Also serves
 
-Five entries serve more than one parent.
+Six entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -72,6 +72,7 @@ Five entries serve more than one parent.
 | Stakeholders don't see the pile-up of concurrent projects | Objective: Present accurate project status to stakeholders |
 | No history log for projects | Objective: Protect the team from scope creep and project pressure |
 | Project manager home dashboard | Problem: Hard to see what each team member is working on |
+| Route project manager to their dashboard | Solution: Project manager home dashboard |
 
 ## Objectives
 
@@ -195,7 +196,7 @@ Five entries serve more than one parent.
 - Type: Feature
 - Description: Clicking "Project manager" on the role picker routes straight to "Project manager home dashboard".
 - Home parent (suggestion only): Solution "Landing page"
-- Also serves (suggestion only): none
+- Also serves (suggestion only): Solution "Project manager home dashboard" — this is the feature's destination.
 - Open questions: none
 
 ### Placeholder for other roles

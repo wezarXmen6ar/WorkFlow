@@ -93,7 +93,7 @@ All objectives and problems also moved to draft-v0.1.md (the active draft) — r
 
 ## Also serves
 
-Twenty-five entries serve more than one parent.
+Twenty-six entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -122,6 +122,7 @@ Twenty-five entries serve more than one parent.
 | Assign resources to phases | Solutions: Create and manage projects; Workload indicator on the department-wide view; Show the price of a change across all projects before it is confirmed |
 | Phase progress reporting | Problem: No single source of truth for project status |
 | Project manager approval of progress | Solution: Live project status timeline |
+| Route project manager to their dashboard | Solution: Project manager home dashboard |
 
 ## Objectives and problems
 
@@ -161,7 +162,7 @@ All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the ac
 - Type: Feature
 - Description: Clicking "Project manager" on the role picker routes straight to "Project manager home dashboard" (see draft-v0.1.md).
 - Home parent (suggestion only): Solution "Landing page"
-- Also serves (suggestion only): none
+- Also serves (suggestion only): Solution "Project manager home dashboard" — this is the feature's destination.
 - Open questions: none. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
 
 ### Placeholder for other roles
