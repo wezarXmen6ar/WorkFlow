@@ -1,6 +1,6 @@
 # Draft for v0.1
 
-**Status:** Active. This draft will be pushed as v0.1.
+**Status:** Pushed as v0.1 on 2026-09-22. This file is finished and is never edited again — see [objectives.md](../objectives.md), [problems.md](../problems.md), [solutions.md](../solutions.md), and [versions/v0.1/](../versions/v0.1/).
 **Map:** [draft-v0.1-map.html](draft-v0.1-map.html)
 
 Staging area for anything discussed that could go into [objectives.md](../objectives.md), [problems.md](../problems.md), or [solutions.md](../solutions.md).
