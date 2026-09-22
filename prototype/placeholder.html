@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorkFlow — coming soon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="brand">WorkFlow</span>
+    <nav><a href="index.html">&larr; Back to sign in</a></nav>
+  </div>
+
+  <div class="card" id="ph" data-trace="F-003" style="text-align:center;padding:50px 20px">
+    <h1 style="margin-bottom:8px" id="role-title">This role</h1>
+    <p class="sub" style="margin-bottom:0">No view built for this role yet in v0.1 — placeholder only.</p>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const role = params.get("role") || "This role";
+document.getElementById("role-title").textContent = role + " — coming soon";
+initMarkers(document.getElementById("ph").parentElement);
+</script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorkFlow — create project</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="brand">WorkFlow</span>
+    <nav><a href="dashboard.html">&larr; My projects</a></nav>
+  </div>
+
+  <h1>Create a project</h1>
+  <p class="sub">S-002 Create and manage projects</p>
+
+  <form id="proj-form">
+
+    <h2 data-trace="F-004">Core details</h2>
+    <div class="card">
+      <div class="field">
+        <label>Project name</label>
+        <input type="text" id="f-name" required>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label>Start date <span class="section-hint" style="margin:0">(optional)</span></label>
+          <input type="date" id="f-start">
+        </div>
+        <div class="field">
+          <label>End date <span class="section-hint" style="margin:0">(optional)</span></label>
+          <input type="date" id="f-end">
+        </div>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label>Categorization</label>
+          <select id="f-categorization">
+            <option value="strategic">Strategic</option>
+            <option value="operational">Operational</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Project category</label>
+          <select id="f-category">
+            <option value="criminal">Criminal</option>
+            <option value="customer">Customer</option>
+            <option value="management">Management</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label>Goal</label>
+          <select id="f-goal">
+            <option value="digitalization">Digitalization of internal operations</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Requested</label>
+          <div class="checks">
+            <label><input type="checkbox" id="f-req-internal" checked> Internal</label>
+            <label><input type="checkbox" id="f-req-external"> External</label>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label>Business user (owning department)</label>
+          <select id="f-dept"></select>
+          <div id="dept-add" style="display:none;margin-top:8px" class="row">
+            <input type="text" id="f-dept-new" placeholder="New department name">
+            <button type="button" class="btn small" id="dept-confirm">Add</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Beneficiary</label>
+          <select id="f-beneficiary">
+            <option value="employees">Employees</option>
+            <option value="customers">Customers</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Background</label>
+        <textarea id="f-background"></textarea>
+      </div>
+      <div class="field">
+        <label>Summary</label>
+        <textarea id="f-summary"></textarea>
+      </div>
+    </div>
+
+    <h2 data-trace="F-005">Definition tables</h2>
+    <p class="section-hint">Add as many points as needed to each — order is kept as entered.</p>
+    <div class="card">
+      <div id="list-scope" class="addlist" data-label="Scope"></div>
+    </div>
+    <div class="card">
+      <div id="list-problems" class="addlist" data-label="Problem statement"></div>
+    </div>
+    <div class="card">
+      <div id="list-objectives" class="addlist" data-label="Objective"></div>
+    </div>
+
+    <h2 data-trace="F-006">Project phases</h2>
+    <p class="section-hint">S-002.1 — pick from the known list or add a custom phase; give each an optional planned work-day count.</p>
+    <div class="card">
+      <div id="phase-picker" class="phase-picker"></div>
+      <div class="row" style="display:flex;gap:8px;margin-top:6px">
+        <input type="text" id="f-phase-custom" placeholder="Custom phase name">
+        <button type="button" class="btn small" id="phase-custom-add">Add custom phase</button>
+      </div>
+      <div id="phase-list" class="phase-list"></div>
+      <div id="timeline" class="timeline"></div>
+    </div>
+
+    <button type="submit" class="btn primary" style="margin-top:10px">Create project</button>
+  </form>
+</div>
+
+<script src="app.js"></script>
+<script>
+/* ---- departments ---- */
+const deptSel = document.getElementById("f-dept");
+function renderDepts() {
+  const depts = loadDepartments();
+  deptSel.innerHTML =
+    (depts.length ? depts.map((d) => `<option>${escHtml(d)}</option>`).join("") : "") +
+    `<option value="__add">+ Add new department…</option>`;
+}
+function syncDeptAddVisibility() {
+  document.getElementById("dept-add").style.display = deptSel.value === "__add" ? "flex" : "none";
+}
+renderDepts();
+syncDeptAddVisibility(); // handles the empty-list case, where "+ Add new department…" is
+                         // the only <option> and is pre-selected with no "change" event to fire
+deptSel.addEventListener("change", syncDeptAddVisibility);
+document.getElementById("dept-confirm").addEventListener("click", () => {
+  const name = document.getElementById("f-dept-new").value.trim();
+  if (!name) return;
+  addDepartment(name);
+  renderDepts();
+  deptSel.value = name;
+  document.getElementById("dept-add").style.display = "none";
+});
+
+/* ---- add-to-table lists (F-005) ---- */
+function initAddList(hostId) {
+  const host = document.getElementById(hostId);
+  const label = host.dataset.label;
+  const items = [];
+  host.innerHTML = `
+    <label>${label}s</label>
+    <div class="row"><input type="text" class="al-input" placeholder="Add a ${label.toLowerCase()}…"><button type="button" class="btn small al-add">Add</button></div>
+    <ul class="al-ul"></ul>
+  `;
+  const input = host.querySelector(".al-input");
+  const ul = host.querySelector(".al-ul");
+  function render() {
+    ul.innerHTML = items.map((t, i) => `<li><span class="n">${i + 1}.</span> ${escHtml(t)}</li>`).join("");
+  }
+  function add() {
+    const v = input.value.trim();
+    if (!v) return;
+    items.push(v);
+    input.value = "";
+    render();
+  }
+  host.querySelector(".al-add").addEventListener("click", add);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); add(); } });
+  return items;
+}
+const scopeItems = initAddList("list-scope");
+const problemItems = initAddList("list-problems");
+const objectiveItems = initAddList("list-objectives");
+
+/* ---- phases / timeline (S-002.1, F-006) ---- */
+const COLORS = ["#6366f1","#ec4899","#f59e0b","#10b981","#06b6d4","#8b5cf6","#ef4444","#84cc16"];
+const phasePicker = document.getElementById("phase-picker");
+PHASES.forEach((p) => {
+  const chip = document.createElement("button");
+  chip.type = "button";
+  chip.className = "phase-chip" + (MANDATORY_PHASES.includes(p) ? " mandatory" : "");
+  chip.textContent = p + (MANDATORY_PHASES.includes(p) ? " *" : "");
+  chip.title = MANDATORY_PHASES.includes(p) ? "Mandatory in the department's process" : "";
+  chip.addEventListener("click", () => addPhase(p, false));
+  phasePicker.appendChild(chip);
+});
+document.getElementById("phase-custom-add").addEventListener("click", () => {
+  const el = document.getElementById("f-phase-custom");
+  const v = el.value.trim();
+  if (!v) return;
+  addPhase(v, true);
+  el.value = "";
+});
+
+const phases = [];
+function addPhase(name, custom) {
+  phases.push({ name, custom, workDays: null });
+  renderPhases();
+}
+function removePhase(i) {
+  phases.splice(i, 1);
+  renderPhases();
+}
+function renderPhases() {
+  const listEl = document.getElementById("phase-list");
+  listEl.innerHTML = "";
+  phases.forEach((ph, i) => {
+    const row = document.createElement("div");
+    row.className = "phase-row";
+    row.innerHTML = `
+      <span class="swatch" style="background:${COLORS[i % COLORS.length]}"></span>
+      <span class="nm">${escHtml(ph.name)}${ph.custom ? " (custom)" : ""}</span>
+      <input type="number" min="0" placeholder="work days" value="${ph.workDays ?? ""}">
+      <button type="button" class="rm">&times;</button>
+    `;
+    row.querySelector("input").addEventListener("input", (e) => {
+      const v = e.target.value;
+      ph.workDays = v === "" ? null : Number(v);
+      renderTimeline();
+    });
+    row.querySelector(".rm").addEventListener("click", () => removePhase(i));
+    listEl.appendChild(row);
+  });
+  renderTimeline();
+}
+function renderTimeline() {
+  const tl = document.getElementById("timeline");
+  const start = document.getElementById("f-start").value;
+  const end = document.getElementById("f-end").value;
+  if (!phases.length) {
+    tl.innerHTML = `<div class="empty">Add a phase to see the timeline.</div>`;
+    return;
+  }
+  const totalDays = phases.reduce((s, p) => s + (p.workDays || 0), 0);
+  let axisNote;
+  if (start && end) {
+    axisNote = `${start} → ${end}`;
+  } else if (totalDays > 0) {
+    axisNote = `${totalDays} planned work day${totalDays === 1 ? "" : "s"} (no start/end date set)`;
+  } else {
+    axisNote = `No dates or work-day estimates yet — bars shown as equal segments`;
+  }
+  const weights = phases.map((p) => (totalDays > 0 ? (p.workDays || 0) : 1));
+  const weightSum = weights.reduce((a, b) => a + b, 0) || phases.length;
+  tl.innerHTML =
+    `<div class="axis-note">${axisNote}</div>` +
+    `<div class="bars">` +
+    phases.map((p, i) => {
+      const w = ((weights[i] / weightSum) * 100).toFixed(2);
+      const label = escHtml(p.name) + (p.workDays ? " — " + p.workDays + "d" : "");
+      return `<div class="bar" style="width:${w}%;background:${COLORS[i % COLORS.length]}" title="${label}">${escHtml(p.name)}</div>`;
+    }).join("") +
+    `</div>`;
+}
+document.getElementById("f-start").addEventListener("change", renderTimeline);
+document.getElementById("f-end").addEventListener("change", renderTimeline);
+renderPhases();
+
+/* ---- submit ---- */
+document.getElementById("proj-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("f-name").value.trim();
+  if (!name) { document.getElementById("f-name").focus(); return; }
+  addProject({
+    id: uid(),
+    sample: false,
+    name,
+    startDate: document.getElementById("f-start").value,
+    endDate: document.getElementById("f-end").value,
+    categorization: document.getElementById("f-categorization").value,
+    category: document.getElementById("f-category").value,
+    goal: document.getElementById("f-goal").value,
+    requested: {
+      internal: document.getElementById("f-req-internal").checked,
+      external: document.getElementById("f-req-external").checked,
+    },
+    businessUser: deptSel.value === "__add" ? "" : deptSel.value,
+    beneficiary: document.getElementById("f-beneficiary").value,
+    background: document.getElementById("f-background").value,
+    summary: document.getElementById("f-summary").value,
+    scope: scopeItems,
+    problemStatements: problemItems,
+    objectives: objectiveItems,
+    phases,
+    atAGlance: null,
+    createdAt: Date.now(),
+  });
+  location.href = "dashboard.html";
+});
+
+initMarkers(document.body);
+</script>
+</body>
+</html>
