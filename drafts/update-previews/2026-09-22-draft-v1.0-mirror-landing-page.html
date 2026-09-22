@@ -80,6 +80,20 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 @media (max-width:860px){.gr{grid-template-columns:1fr !important;gap:20px}.lk{display:none}.col{justify-content:flex-start}}
 @media (prefers-reduced-motion:reduce){.e,.nd{transition:none}}
 @media print{.gr.on .e,.gr.on .nd{opacity:1}.nd.pin{box-shadow:none}}
+.nd.proposed{border-style:dashed;border-color:oklch(0.65 0.18 75);background:oklch(0.965 0.05 90);box-shadow:0 0 0 1px oklch(0.65 0.18 75 / 0.4)}
+.e.new{stroke:oklch(0.60 0.18 75);opacity:.85;stroke-width:1.4}
+.e.new.d{stroke-dasharray:4 4}
+.sum{margin:18px 0 0;padding:14px 16px;border:1px dashed oklch(0.65 0.18 75);border-radius:12px;background:oklch(0.985 0.02 90);font-size:0.8125rem}
+.sum h2{margin:0 0 8px;font-size:0.8125rem;font-weight:600;color:oklch(0.42 0.16 75)}
+.sum ul{margin:4px 0 10px;padding-left:18px}
+.sum li{margin:2px 0}
+.sum .none{color:var(--ink2)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sum{background:oklch(0.26 0.04 85)}}
+:root[data-theme="dark"] .sum{background:oklch(0.26 0.04 85)}
+.nd.proposed::after{content:"NEW";position:absolute;top:-8px;left:9px;font-size:0.625rem;font-weight:700;letter-spacing:.03em;color:oklch(0.42 0.16 75);background:oklch(0.985 0.002 265);padding:0 4px;border-radius:4px;border:1px solid oklch(0.65 0.18 75)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nd.proposed{background:oklch(0.28 0.05 85)}:root:not([data-theme="light"]) .nd.proposed::after{background:oklch(0.185 0.008 265)}}
+:root[data-theme="dark"] .nd.proposed{background:oklch(0.28 0.05 85)}
+:root[data-theme="dark"] .nd.proposed::after{background:oklch(0.185 0.008 265)}
 </style>
 </head>
 <body>
@@ -92,6 +106,7 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 <noscript>This map needs JavaScript to draw the links between items.</noscript>
 <div class="gr" id="gr"><svg class="lk" id="lk" aria-hidden="true"></svg></div>
 <div class="dt" id="dt"></div>
+<div class="sum" id="sum"></div>
 </div>
 
 <script>
@@ -107,8 +122,8 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
    =========================================================================== */
 
 var DATA={
-version:"Draft v1.0",
-note:"Deferred — pending after v0.1. Create and manage projects, Project manager home dashboard, Resource assignment and workload tracking, and Phase progress reporting are defined in draft-v0.1.md; Landing page and its features are mirrored from draft-v0.1.md; kept here so remaining items still show their place",
+version:"Draft v1.0 — PREVIEW",
+note:"Objectives, problems, and the first solutions chosen for the prototype. Not yet pushed to the main documents",
 layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
@@ -199,6 +214,20 @@ links:[
 ["u27","s9",1],["u28","s9",1],["u28","s4",0],["u29","s1",1],
 ["u29","s12",0],["u29","s2",0],["s13","p8",1],["f1","s13",1],
 ["f2","s13",1],["f3","s13",1],["s1","s13",0],["s11","s13",0]
+],
+proposed:[
+{id:"s13",type:"Solution"},
+{id:"f1",type:"Feature"},
+{id:"f2",type:"Feature"},
+{id:"f3",type:"Feature"}
+],
+newLinks:[
+{child:"s13",parent:"p8",kind:"home",existingEndpoint:true},
+{child:"f1",parent:"s13",kind:"home",existingEndpoint:false},
+{child:"f2",parent:"s13",kind:"home",existingEndpoint:false},
+{child:"f3",parent:"s13",kind:"home",existingEndpoint:false},
+{child:"s1",parent:"s13",kind:"also serves",existingEndpoint:false},
+{child:"s11",parent:"s13",kind:"also serves",existingEndpoint:false}
 ]
 };
 
@@ -210,6 +239,9 @@ var T={},up={},dn={},nd={},pin=null;
 DATA.nodes.forEach(function(n){T[n.id]=n});
 DATA.links.forEach(function(e){(up[e[0]]=up[e[0]]||[]).push(e[1]);(dn[e[1]]=dn[e[1]]||[]).push(e[0])});
 
+var propById={};(DATA.proposed||[]).forEach(function(p){propById[p.id]=p.type});
+var newLinkByKey={};(DATA.newLinks||[]).forEach(function(l){newLinkByKey[l.child+"|"+l.parent]=l});
+
 document.getElementById("ttl").textContent=DATA.version;
 document.title="WorkFlow map — "+DATA.version;
 var shared=DATA.nodes.filter(function(n){return(up[n.id]||[]).length>1}).length;
@@ -217,16 +249,42 @@ document.getElementById("mta").textContent=[DATA.note,DATA.nodes.length+" items"
 
 var lg=document.getElementById("lgd"),h="";
 DATA.layers.forEach(function(l){h+='<span class="kk '+l.tone+'">'+l.name.replace(/s$/,"")+"</span>"});
-h+='<span class="sp"></span><span>Solid line: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: number of parents</span><span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
+h+='<span class="sp"></span><span>Solid line: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: number of parents</span><span class="sp"></span><span style="color:oklch(0.42 0.16 75)">Dashed border + NEW: proposed item</span><span class="sp"></span><span style="color:oklch(0.42 0.16 75)">Amber line: proposed link</span><span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
 lg.innerHTML=h;
+
+/* written breakdown: new items by type, then new links by kind, vs. any links that only connect existing items */
+(function(){
+var sumEl=document.getElementById("sum");
+var byType={};
+(DATA.proposed||[]).forEach(function(p){(byType[p.type]=byType[p.type]||[]).push(T[p.id].full)});
+var itemsHtml="";
+if(Object.keys(byType).length){
+  itemsHtml+="<ul>";
+  Object.keys(byType).sort().forEach(function(t){
+    itemsHtml+="<li><b>"+t+" ("+byType[t].length+"):</b> "+byType[t].join(", ")+"</li>";
+  });
+  itemsHtml+="</ul>";
+} else { itemsHtml='<p class="none">No new items — everything below is an existing item.</p>'; }
+
+var homeLinks=(DATA.newLinks||[]).filter(function(l){return l.kind==="home"});
+var alsoLinks=(DATA.newLinks||[]).filter(function(l){return l.kind!=="home"});
+var pureLinks=(DATA.newLinks||[]).filter(function(l){return !propById.hasOwnProperty(l.child)&&!propById.hasOwnProperty(l.parent)});
+var linksHtml="<ul>";
+linksHtml+="<li><b>New home-parent links ("+homeLinks.length+"):</b> "+(homeLinks.length?homeLinks.map(function(l){return T[l.child].short+" → "+T[l.parent].short}).join(", "):'<span class="none">none</span>')+"</li>";
+linksHtml+="<li><b>New “also serves” links ("+alsoLinks.length+"):</b> "+(alsoLinks.length?alsoLinks.map(function(l){return T[l.child].short+" → "+T[l.parent].short+(l.existingEndpoint?" (already in v1.0)":"")}).join(", "):'<span class="none">none</span>')+"</li>";
+linksHtml+="<li><b>New links between two items that already existed in v1.0 ("+pureLinks.length+"):</b> "+(pureLinks.length?pureLinks.map(function(l){return T[l.child].short+" → "+T[l.parent].short}).join(", "):'<span class="none">none — every new link involves a new item above</span>')+"</li>";
+linksHtml+="</ul>";
+
+sumEl.innerHTML="<h2>What this preview actually changes</h2>"+itemsHtml+linksHtml;
+})();
 
 gr.style.gridTemplateColumns="repeat("+DATA.layers.length+",minmax(0,200px))";
 DATA.layers.forEach(function(l){
 var c=document.createElement("div");c.className="col";
 var ch=document.createElement("div");ch.className="ch";ch.textContent=l.name;c.appendChild(ch);
 DATA.nodes.filter(function(n){return n.layer===l.key}).forEach(function(n){
-var p=(up[n.id]||[]).length,b=document.createElement("button");
-b.type="button";b.className="nd "+l.tone+(p>1?" b":"");b.dataset.id=n.id;b.textContent=n.short;
+var p=(up[n.id]||[]).length,b=document.createElement("button"),isNew=propById.hasOwnProperty(n.id);
+b.type="button";b.className="nd "+l.tone+(p>1?" b":"")+(isNew?" proposed":"");b.dataset.id=n.id;b.textContent=n.short;
 if(p>1){var s=document.createElement("span");s.className="bg";s.textContent=p;b.appendChild(s)}
 c.appendChild(b);nd[n.id]=b});
 gr.appendChild(c)});
@@ -258,7 +316,8 @@ var key=e[0]+"|"+e[1],x1=R[e[1]].r,y1=AR[key],x2=R[e[0]].l,y2=AL[key];
 var sb=Math.min(18,(x2-x1)*.22),a=x1+sb,b=x2-sb,m=(b-a)*.5;
 var d="M"+x1+" "+y1+"L"+a+" "+y1+"C"+(a+m)+" "+y1+" "+(b-m)+" "+y2+" "+b+" "+y2+"L"+x2+" "+y2;
 PATH[key]=d;
-s+='<path class="e'+(e[2]?"":" d")+'" d="'+d+'"/>'});
+var isNewLink=newLinkByKey.hasOwnProperty(key);
+s+='<path class="e'+(e[2]?"":" d")+(isNewLink?" new":"")+'" d="'+d+'"/>'});
 svg.innerHTML='<g>'+s+'</g><g id="hg"></g>'}
 
 function chain(id){var set={};set[id]=1;
@@ -269,9 +328,10 @@ return set}
 function label(k){var l=DATA.layers.filter(function(x){return x.key===k})[0];return l?l.name.replace(/s$/,""):k}
 
 function info(id){var n=T[id],ps=up[id]||[],cs=dn[id]||[];
-var h='<span class="ttl"><b>'+label(n.layer)+"</b> — "+n.full+"</span>";
-if(ps.length)h+='<span class="sv">Serves '+ps.length+": "+ps.map(function(x){return T[x].full}).join("  ·  ")+"</span>";
-if(cs.length)h+='<span class="sv">Served by '+cs.length+": "+cs.map(function(x){return T[x].full}).join("  ·  ")+"</span>";
+var isNew=propById.hasOwnProperty(id);
+var h='<span class="ttl"><b>'+label(n.layer)+"</b> — "+n.full+(isNew?' <b style="color:oklch(0.42 0.16 75)">— NEW '+propById[id]+', not yet in the real draft</b>':"")+"</span>";
+if(ps.length)h+='<span class="sv">Serves '+ps.length+": "+ps.map(function(x){var l=newLinkByKey[id+"|"+x];return T[x].full+(l?' <i>('+l.kind+", new link)</i>":"")}).join("  ·  ")+"</span>";
+if(cs.length)h+='<span class="sv">Served by '+cs.length+": "+cs.map(function(x){var l=newLinkByKey[x+"|"+id];return T[x].full+(l?' <i>('+l.kind+", new link)</i>":"")}).join("  ·  ")+"</span>";
 return h}
 
 function focus(id){
