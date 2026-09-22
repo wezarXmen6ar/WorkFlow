@@ -3,7 +3,7 @@
 **Status:** Pending. Deferred until after v0.1 is pushed and the prototype's first slice is built from it; not the active draft.
 **Map:** [draft-v1.0-map.html](draft-v1.0-map.html)
 
-Staging area for anything discussed that could go into [objectives.md](../objectives.md), [problems.md](../problems.md), or [solutions.md](../solutions.md).
+Staging area for anything discussed that could go into [objectives.md](../../objectives.md), [problems.md](../../problems.md), or [solutions.md](../../solutions.md).
 
 Nothing here has an ID. Entries move to the main documents only after the user's green light, and get an ID and a "Serves" parent at that point. Once this draft is pushed, this file is finished and never edited again; anything new goes into the next draft file.
 
@@ -87,7 +87,7 @@ Objective: Protect the team from scope creep and project pressure
          └─ Sub-solution: Project priority
 ```
 
-Nine items moved out of this draft into [draft-v0.1.md](draft-v0.1.md) this session — chosen as the first prototype slice: Create and manage projects, Project phases, Project manager home dashboard, At-a-glance project status, Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress. Five of those — Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress — were later cut from v0.1's narrowed scope and moved back here with full entries, restoring their "also serves" links to solutions that live in this same draft.
+Nine items moved out of this draft into [draft-v0.1.md](../v0.1/draft-v0.1.md) this session — chosen as the first prototype slice: Create and manage projects, Project phases, Project manager home dashboard, At-a-glance project status, Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress. Five of those — Resource assignment and workload tracking, Resource pool, Assign resources to phases, Phase progress reporting, Project manager approval of progress — were later cut from v0.1's narrowed scope and moved back here with full entries, restoring their "also serves" links to solutions that live in this same draft.
 
 All objectives and problems also moved to draft-v0.1.md (the active draft) — referenced here by name only.
 
@@ -126,7 +126,7 @@ Twenty-six entries serve more than one parent.
 
 ## Objectives and problems
 
-All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the active draft) — full descriptions live there, referenced here by name only, except the two mirrored below because "Landing page" (see below) depends on them.
+All objectives and problems are staged in [draft-v0.1.md](../v0.1/draft-v0.1.md) (the active draft) — full descriptions live there, referenced here by name only, except the two mirrored below because "Landing page" (see below) depends on them.
 
 ### Manage all department projects in one place
 - Type: Objective

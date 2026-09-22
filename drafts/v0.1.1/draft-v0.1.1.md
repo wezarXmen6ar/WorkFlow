@@ -3,7 +3,7 @@
 **Status:** Active. This draft will be pushed as v0.1.1.
 **Map:** [draft-v0.1.1-map.html](draft-v0.1.1-map.html)
 
-Staging area for anything discussed that could go into [objectives.md](../objectives.md), [problems.md](../problems.md), or [solutions.md](../solutions.md).
+Staging area for anything discussed that could go into [objectives.md](../../objectives.md), [problems.md](../../problems.md), or [solutions.md](../../solutions.md).
 
 Unlike draft-v0.1.md and draft-v0.2.md, this draft is not a slice of new scope — it's small fixes and additions to items **already pushed** as v0.1, found while building and reviewing the v0.1 prototype. draft-v0.1.md is finished and is never edited again, so anything that changes what it already pushed goes here instead, gets reviewed, and is pushed as its own version (v0.1.1) when confirmed.
 
@@ -34,6 +34,25 @@ Objective: Manage all department projects in one place
          └─ Sub-solution: Project phases (S-002.1) — AMENDED
              └─ Feature: Timeline / phase builder (F-006) — AMENDED
 ```
+
+## Objectives and problems
+
+All four objectives and all ten problems already pushed in [objectives.md](../../objectives.md) and [problems.md](../../problems.md) stay exactly as they are — kept, not pruned. We discussed cutting them down to only what v0.1's built solutions touch and decided against it: CLAUDE.md treats objectives and problems as the stable top of the hierarchy, meant to be established in full before all their solutions exist ("stability decreases top to bottom... treat upper layers as stable anchors"). Pruning now would just mean re-adding entries at every future push as scope reaches further into the problem space. Referenced here by ID only; full descriptions live in objectives.md and problems.md, not repeated here.
+
+- O-001 Manage all department projects in one place
+- O-002 Present accurate project status to stakeholders
+- O-003 Document everything about each project
+- O-004 Protect the team from scope creep and project pressure
+- P-001 No tool to create and manage projects
+- P-002 No department-wide view of all projects
+- P-003 Hard to see what each team member is working on
+- P-004 No single source of truth for project status
+- P-005 Stakeholders can't be shown only what concerns them
+- P-006 Project files and context depend on each project manager
+- P-007 No history log for projects
+- P-008 Requirements keep being added with no visible cost
+- P-009 Stakeholders don't see the pile-up of concurrent projects
+- P-010 The cost of priority shifts is invisible
 
 ## Entries
 

@@ -15,6 +15,7 @@
 --t4bg:oklch(0.975 0.003 265);--t4tx:oklch(0.42 0.010 265);--t4ln:oklch(0.79 0.010 265);
 --t5bg:oklch(0.955 0.040 75);--t5tx:oklch(0.44 0.100 75);--t5ln:oklch(0.80 0.070 75);
 --focus:oklch(0.47 0.200 268);
+--new:oklch(0.62 0.15 60);--amd:oklch(0.53 0.16 255);--rp:oklch(0.53 0.20 300);
 --radius:8px;
 --ease:cubic-bezier(0.22,1,0.36,1);
 }
@@ -28,6 +29,7 @@
 --t4bg:oklch(0.275 0.010 265);--t4tx:oklch(0.800 0.008 265);--t4ln:oklch(0.450 0.012 265);
 --t5bg:oklch(0.300 0.055 75);--t5tx:oklch(0.880 0.080 75);--t5ln:oklch(0.500 0.090 75);
 --focus:oklch(0.87 0.140 250);
+--new:oklch(0.82 0.14 75);--amd:oklch(0.76 0.13 255);--rp:oklch(0.77 0.17 300);
 }}
 :root[data-theme="dark"]{
 --bg:oklch(0.185 0.008 265);--s0:oklch(0.155 0.008 265);--s1:oklch(0.235 0.010 265);--s2:oklch(0.275 0.010 265);
@@ -39,6 +41,7 @@
 --t4bg:oklch(0.275 0.010 265);--t4tx:oklch(0.800 0.008 265);--t4ln:oklch(0.450 0.012 265);
 --t5bg:oklch(0.300 0.055 75);--t5tx:oklch(0.880 0.080 75);--t5ln:oklch(0.500 0.090 75);
 --focus:oklch(0.87 0.140 250);
+--new:oklch(0.82 0.14 75);--amd:oklch(0.76 0.13 255);--rp:oklch(0.77 0.17 300);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -71,6 +74,24 @@ h1{margin:0;font-size:1.25rem;font-weight:500;letter-spacing:-0.01em}
 .t4{background:var(--t4bg);color:var(--t4tx);border-color:var(--t4ln)}
 .t5{background:var(--t5bg);color:var(--t5tx);border-color:var(--t5ln)}
 .bg{position:absolute;top:7px;right:7px;width:17px;height:17px;border-radius:50%;font-size:0.6875rem;line-height:16px;text-align:center;background:var(--bg);border:1px solid currentColor}
+.nd.new{box-shadow:0 0 0 2px var(--new)}
+.nd.amd{box-shadow:0 0 0 2px var(--amd)}
+.nd.new.pin,.nd.amd.pin{box-shadow:0 0 0 2px var(--focus)}
+.tag{position:absolute;top:-8px;left:9px;font-size:0.625rem;line-height:1;padding:2px 5px;border-radius:5px;color:#fff;font-weight:500;letter-spacing:.02em}
+.tag.new{background:var(--new)}
+.tag.amd{background:var(--amd)}
+.e.new{stroke:var(--new);stroke-width:2;opacity:.85}
+.e.amd{stroke:var(--amd);stroke-width:2;opacity:.85}
+.e.rp{stroke:var(--rp);stroke-width:2.3;opacity:.9}
+.gr.on .e.new,.gr.on .e.amd,.gr.on .e.rp{opacity:.4}
+.key{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:var(--radius);font-size:0.75rem;border:1px solid}
+.key::before{content:"";width:9px;height:9px;border-radius:50%;display:inline-block}
+.key.k1{border-color:var(--new);color:var(--new)}
+.key.k1::before{background:var(--new)}
+.key.k2{border-color:var(--amd);color:var(--amd)}
+.key.k2::before{background:var(--amd)}
+.key.k3{border-color:var(--rp);color:var(--rp)}
+.key.k3::before{background:var(--rp)}
 .dt{margin-top:18px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--s1);min-height:64px;font-size:0.875rem}
 .dt .ttl{display:block;margin-bottom:5px}
 .dt .sv{display:block;font-size:0.8125rem;color:var(--ink2);margin-top:2px}
@@ -96,19 +117,19 @@ noscript{display:block;margin:20px 0;color:var(--ink2)}
 
 <script>
 /* ===========================================================================
-   TEMPLATE — to make the map for a new push, copy this file and replace only
-   the DATA object below. Nothing under "RENDER" needs to change.
-
-     layers : the columns, left to right. tone t1..t5 picks the colour.
-     nodes  : id, layer key, short label (2-4 words), full title.
-     links  : [child, parent, 1 = home parent (solid) | 0 = also serves (dashed)]
-
-   Every node needs exactly one home-parent link. Extra links are "also serves".
+   Sequel draft to draft-v0.1 (pushed as v0.1). Per CLAUDE.md's mind-map rule
+   for sequel drafts, this map keeps its diff against v0.1 highlighted
+   permanently — it is the real map for draft-v0.1.1, not a temporary preview.
+     amber ring/tag "NEW"     : a genuinely new item, no ID yet
+     blue ring/tag "AMENDED"  : an existing, already-pushed item being changed
+     plain (no ring)          : existing item shown for context, unchanged
+     amber line                : a new link (home-parent, solid; also-serves, dashed)
+     violet line                : a new link between two items that already existed (none in this draft)
    =========================================================================== */
 
 var DATA={
 version:"Draft v0.1.1",
-note:"Small fixes and additions to items already pushed as v0.1, found while building its prototype. Existing items keep their real IDs (S-002, S-002.1, F-004..F-006); \"new1\"/\"new2\" are genuinely new features and have no ID yet",
+note:"Sequel to draft-v0.1 (pushed as v0.1). Small fixes and additions found while building and reviewing the v0.1 prototype — see draft-v0.1.1.md",
 layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
@@ -123,13 +144,13 @@ nodes:[
 
 {id:"S-002",layer:"s",short:"Create and manage",full:"Create and manage projects"},
 
-{id:"S-002.1",layer:"u",short:"Project phases (amended)",full:"Project phases — amended: add \"Hold\" to the known phase list, drop the mandatory security-testing/deployment language"},
+{id:"S-002.1",layer:"u",short:"Project phases",full:"Project phases — AMENDED: add \"Hold\" to the known phase list, drop the mandatory security-testing/deployment language",nw:"amd"},
 
 {id:"F-004",layer:"f",short:"Core details form",full:"Create a project — core details"},
 {id:"F-005",layer:"f",short:"Definition tables",full:"Definition tables: scope, problem statements, objectives"},
-{id:"F-006",layer:"f",short:"Timeline builder (amended)",full:"Timeline / phase builder — amended: end date auto-calculates from start date + summed phase work-days, live, shown beside any manually chosen end date"},
-{id:"new1",layer:"f",short:"Status & hold reason",full:"Project status and hold reason (new, no ID yet)"},
-{id:"new2",layer:"f",short:"Open and edit a project",full:"Open and edit a project (new, no ID yet)"}
+{id:"F-006",layer:"f",short:"Timeline builder",full:"Timeline / phase builder — AMENDED: end date auto-calculates from start date + summed phase work-days, live, shown beside any manually chosen end date",nw:"amd"},
+{id:"new1",layer:"f",short:"Status & hold reason",full:"Project status and hold reason (new, no ID yet)",nw:"new"},
+{id:"new2",layer:"f",short:"Open and edit a project",full:"Open and edit a project (new, no ID yet)",nw:"new"}
 ],
 links:[
 ["P-001","O-001",1],
@@ -138,8 +159,8 @@ links:[
 ["F-004","S-002",1],
 ["F-005","S-002",1],
 ["F-006","S-002.1",1],
-["new1","S-002",1],
-["new2","S-002",1]
+["new1","S-002",1,"new"],
+["new2","S-002",1,"new"]
 ]
 };
 
@@ -158,7 +179,9 @@ document.getElementById("mta").textContent=[DATA.note,DATA.nodes.length+" items"
 
 var lg=document.getElementById("lgd"),h="";
 DATA.layers.forEach(function(l){h+='<span class="kk '+l.tone+'">'+l.name.replace(/s$/,"")+"</span>"});
-h+='<span class="sp"></span><span>Solid line: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: number of parents</span><span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
+h+='<span class="sp"></span><span>Solid: home parent</span><span class="sp"></span><span>Dashed: also serves</span><span class="sp"></span><span>Badge: parents</span>';
+h+='<span class="sp"></span><span class="key k1">new item</span><span class="key k2">amended item</span><span class="key k3">new link, both existed</span>';
+h+='<span class="sp"></span><span>Hover to trace, click to pin, Esc to clear</span>';
 lg.innerHTML=h;
 
 gr.style.gridTemplateColumns="repeat("+DATA.layers.length+",minmax(0,200px))";
@@ -167,12 +190,13 @@ var c=document.createElement("div");c.className="col";
 var ch=document.createElement("div");ch.className="ch";ch.textContent=l.name;c.appendChild(ch);
 DATA.nodes.filter(function(n){return n.layer===l.key}).forEach(function(n){
 var p=(up[n.id]||[]).length,b=document.createElement("button");
-b.type="button";b.className="nd "+l.tone+(p>1?" b":"");b.dataset.id=n.id;b.textContent=n.short;
+b.type="button";b.className="nd "+l.tone+(p>1?" b":"")+(n.nw?" "+n.nw:"");b.dataset.id=n.id;b.textContent=n.short;
 if(p>1){var s=document.createElement("span");s.className="bg";s.textContent=p;b.appendChild(s)}
+if(n.nw){var tg=document.createElement("span");tg.className="tag "+n.nw;tg.textContent=n.nw==="new"?"NEW":"AMENDED";b.appendChild(tg)}
 c.appendChild(b);nd[n.id]=b});
 gr.appendChild(c)});
 
-var DEF='<span class="st">'+DATA.nodes.length+" items, "+DATA.links.length+' links. <b>'+shared+" of them serve more than one parent</b> and carry a badge. Each idea is written once and reused, never duplicated.</span>";
+var DEF='<span class="st">'+DATA.nodes.length+" items, "+DATA.links.length+' links. <b>'+shared+" of them serve more than one parent</b> and carry a badge. Amber = new, blue = amended, plain = unchanged context.</span>";
 
 var PATH={};
 
@@ -199,7 +223,7 @@ var key=e[0]+"|"+e[1],x1=R[e[1]].r,y1=AR[key],x2=R[e[0]].l,y2=AL[key];
 var sb=Math.min(18,(x2-x1)*.22),a=x1+sb,b=x2-sb,m=(b-a)*.5;
 var d="M"+x1+" "+y1+"L"+a+" "+y1+"C"+(a+m)+" "+y1+" "+(b-m)+" "+y2+" "+b+" "+y2+"L"+x2+" "+y2;
 PATH[key]=d;
-s+='<path class="e'+(e[2]?"":" d")+'" d="'+d+'"/>'});
+s+='<path class="e'+(e[2]?"":" d")+(e[3]?" "+e[3]:"")+'" d="'+d+'"/>'});
 svg.innerHTML='<g>'+s+'</g><g id="hg"></g>'}
 
 function chain(id){var set={};set[id]=1;

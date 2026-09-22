@@ -1,15 +1,15 @@
 # Draft for v0.1
 
-**Status:** Pushed as v0.1 on 2026-09-22. This file is finished and is never edited again — see [objectives.md](../objectives.md), [problems.md](../problems.md), [solutions.md](../solutions.md), and [versions/v0.1/](../versions/v0.1/).
+**Status:** Pushed as v0.1 on 2026-09-22. This file is finished and is never edited again — see [objectives.md](../../objectives.md), [problems.md](../../problems.md), [solutions.md](../../solutions.md), and [versions/v0.1/](../../versions/v0.1/).
 **Map:** [draft-v0.1-map.html](draft-v0.1-map.html)
 
-Staging area for anything discussed that could go into [objectives.md](../objectives.md), [problems.md](../problems.md), or [solutions.md](../solutions.md).
+Staging area for anything discussed that could go into [objectives.md](../../objectives.md), [problems.md](../../problems.md), or [solutions.md](../../solutions.md).
 
 Nothing here has an ID. Entries move to the main documents only after the user's green light, and get an ID and a "Serves" parent at that point. Once this draft is pushed, this file is finished and never edited again; anything new goes into the next draft file.
 
 Each entry has one **home parent** (where it lives and where its ID comes from) and may **also serve** other parents. Nothing is duplicated: an idea is written once and referenced from every parent it serves.
 
-Started as the full objectives and problems (carried over from [draft-v1.0.md](draft-v1.0.md), unchanged), then a first slice of solutions was chosen together, then narrowed to a tighter scope: enough to land in the tool, create a project, and see it on a personal dashboard — one coherent chain, nothing half-built. Resource assignment and phase progress reporting were cut from this scope and moved to [draft-v1.0.md](draft-v1.0.md).
+Started as the full objectives and problems (carried over from [draft-v1.0.md](../v1.0/draft-v1.0.md), unchanged), then a first slice of solutions was chosen together, then narrowed to a tighter scope: enough to land in the tool, create a project, and see it on a personal dashboard — one coherent chain, nothing half-built. Resource assignment and phase progress reporting were cut from this scope and moved to [draft-v1.0.md](../v1.0/draft-v1.0.md).
 
 **Entry format**
 
@@ -61,7 +61,7 @@ Objective: Protect the team from scope creep and project pressure
 
 "No department-wide view of all projects" has no solution yet — "Department portfolio view" stays deferred in draft-v1.0.md for now.
 
-**Links not shown above, added later:** this item will also serve a solution that is still in [draft-v1.0.md](draft-v1.0.md) (not yet built). That "also serves" link gets added once v1.0 is pushed:
+**Links not shown above, added later:** this item will also serve a solution that is still in [draft-v1.0.md](../v1.0/draft-v1.0.md) (not yet built). That "also serves" link gets added once v1.0 is pushed:
 - Project phases → will also serve "Live project status timeline"
 
 ## Also serves

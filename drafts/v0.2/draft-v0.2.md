@@ -3,13 +3,13 @@
 **Status:** Pending. Deferred until after v0.1 is pushed and its prototype slice is built; not the active draft.
 **Map:** [draft-v0.2-map.html](draft-v0.2-map.html)
 
-Staging area for anything discussed that could go into [objectives.md](../objectives.md), [problems.md](../problems.md), or [solutions.md](../solutions.md).
+Staging area for anything discussed that could go into [objectives.md](../../objectives.md), [problems.md](../../problems.md), or [solutions.md](../../solutions.md).
 
 Nothing here has an ID. Entries move to the main documents only after the user's green light, and get an ID and a "Serves" parent at that point. Once this draft is pushed, this file is finished and never edited again; anything new goes into the next draft file.
 
 Each entry has one **home parent** (where it lives and where its ID comes from) and may **also serve** other parents. Nothing is duplicated: an idea is written once and referenced from every parent it serves.
 
-Started as a full copy of [draft-v0.1.md](draft-v0.1.md), taken once the "Create and manage projects" form was fully specced with the user. Everything from that spec that didn't fit v0.1's narrowed scope — attachments, project updates, and main-project grouping — was kept here in full detail instead of being dropped, so nothing discussed is lost. These three overlap with solutions already drafted in [draft-v1.0.md](draft-v1.0.md) (Central project file repository / Attach documents to projects and phases, Project history log, Department portfolio view / Search and filter the project list); draft-v1.0.md was left untouched on purpose, and that overlap is reconciled when v1.0 is worked on.
+Started as a full copy of [draft-v0.1.md](../v0.1/draft-v0.1.md), taken once the "Create and manage projects" form was fully specced with the user. Everything from that spec that didn't fit v0.1's narrowed scope — attachments, project updates, and main-project grouping — was kept here in full detail instead of being dropped, so nothing discussed is lost. These three overlap with solutions already drafted in [draft-v1.0.md](../v1.0/draft-v1.0.md) (Central project file repository / Attach documents to projects and phases, Project history log, Department portfolio view / Search and filter the project list); draft-v1.0.md was left untouched on purpose, and that overlap is reconciled when v1.0 is worked on.
 
 **Entry format**
 
@@ -72,7 +72,7 @@ Objective: Protect the team from scope creep and project pressure
 
 "No department-wide view of all projects" now has a lightweight solution — the main-project grouping tag. The full "Department portfolio view" stays deferred in draft-v1.0.md.
 
-**Links not shown above, added later:** this item will also serve a solution that is still in [draft-v1.0.md](draft-v1.0.md) (not yet built). That "also serves" link gets added once v1.0 is pushed:
+**Links not shown above, added later:** this item will also serve a solution that is still in [draft-v1.0.md](../v1.0/draft-v1.0.md) (not yet built). That "also serves" link gets added once v1.0 is pushed:
 - Project phases → will also serve "Live project status timeline"
 
 ## Also serves
