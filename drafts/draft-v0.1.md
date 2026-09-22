@@ -31,6 +31,10 @@ Home parents only. The "also serves" links are listed after the tree.
 ```
 Objective: Manage all department projects in one place
  ├─ Problem: No tool to create and manage projects
+ │   ├─ Solution: Landing page
+ │   │   ├─ Feature: Identify the visitor by role
+ │   │   ├─ Feature: Route project manager to their dashboard
+ │   │   └─ Feature: Placeholder for other roles
  │   ├─ Solution: Create and manage projects
  │   │   └─ Sub-solution: Project phases
  │   └─ Solution: Project manager home dashboard
@@ -184,6 +188,34 @@ Eight entries serve more than one parent.
 
 ## Solutions and sub-solutions
 
+### Landing page
+- Type: Solution
+- Description: The first screen anyone sees when they open the tool. It reads who is signed in and routes them straight to what matters to them — a project manager to "Project manager home dashboard"; other roles to their own view once those exist. There is no shared, generic home screen to sit through first.
+- Home parent (suggestion only): Problem "No tool to create and manage projects"
+- Also serves (suggestion only): none
+- Open questions: For v0.1, only the project-manager route has a real destination built. Other roles' routes stay placeholders until their views exist (see draft-v1.0.md).
+
+### Identify the visitor by role
+- Type: Feature
+- Description: The landing page shows a role picker. Clicking a role signs the visitor in as that role for the session — the prototype's stand-in for real authentication. The full role list and what each role can do is defined in "Access by role and owning general department" (see draft-v1.0.md); for v0.1 only "Project manager" is a real, functional choice.
+- Home parent (suggestion only): Solution "Landing page"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Route project manager to their dashboard
+- Type: Feature
+- Description: Clicking "Project manager" on the role picker routes straight to "Project manager home dashboard".
+- Home parent (suggestion only): Solution "Landing page"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Placeholder for other roles
+- Type: Feature
+- Description: Clicking any role other than "Project manager" shows a placeholder screen, not a real view — acknowledges the choice without functionality, since only the project-manager route has a built destination in v0.1.
+- Home parent (suggestion only): Solution "Landing page"
+- Also serves (suggestion only): none
+- Open questions: none
+
 ### Create and manage projects
 - Type: Solution
 - Description: One place where the project manager creates a project and manages it through its life. Creating a project sets its name, owning general department, business and GDAI project managers, start quarter (no end date needed yet), phases with planned time frames, and the assigned team. From then on the project is managed here: progress, changes, and launch. A project is always in one of four states: planned (with a future start date, or with no start date because no decision to start has been made yet), active, on hold, or launched. A project on hold always has a reason: waiting for business approval, waiting for a requirement, resources pulled to another project, or another reason. The reason and the days on hold show on the timeline. Some fields can be edited after creation; every edit is recorded in the project's history log. A launched project is done — on the year-long department-wide view it is marked as finished, distinct from active and planned projects.
@@ -200,7 +232,7 @@ Eight entries serve more than one parent.
 
 ### Project manager home dashboard
 - Type: Solution
-- Description: When a project manager opens the tool, they land on a personal dashboard listing every project they currently manage. It is a page the project manager chooses to open, so it sits beside "Project health, quiet by default" rather than against it: nothing here is pushed to them, they see it because they came to look.
+- Description: Reached through the tool's "Landing page" once it identifies the visitor as a project manager. They land on a personal dashboard listing every project they currently manage. It is a page the project manager chooses to open, so it sits beside "Project health, quiet by default" rather than against it: nothing here is pushed to them, they see it because they came to look.
 - Home parent (suggestion only): Problem "No tool to create and manage projects"
 - Also serves (suggestion only): Problem "Hard to see what each team member is working on" — this is how a project manager keeps track of their own work across projects.
 - Open questions: none

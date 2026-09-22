@@ -29,6 +29,10 @@ Home parents only. The "also serves" links are listed after the tree.
 ```
 Objective: Manage all department projects in one place
  ├─ Problem: No tool to create and manage projects
+ │   ├─ Solution: Landing page (mirrored from draft-v0.1.md)
+ │   │   ├─ Feature: Identify the visitor by role
+ │   │   ├─ Feature: Route project manager to their dashboard
+ │   │   └─ Feature: Placeholder for other roles
  │   ├─ Sub-solution: Duplicate a project (home: Solution "Create and manage projects" — now in draft-v0.1.md)
  │   ├─ Sub-solution: Archive and permanent delete (home: Solution "Create and manage projects" — now in draft-v0.1.md)
  │   └─ Sub-solution: Personal task list (home: Solution "Project manager home dashboard" — now in draft-v0.1.md)
@@ -111,9 +115,51 @@ Twenty entries serve more than one parent.
 
 ## Objectives and problems
 
-All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the active draft) — full descriptions live there. Referenced here by name only.
+All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the active draft) — full descriptions live there, referenced here by name only, except the two mirrored below because "Landing page" (see below) depends on them.
+
+### Manage all department projects in one place
+- Type: Objective
+- Description: One tool to manage every project the department has worked on, is working on, and will work on, including the yearly plan and the big picture.
+- Home parent (suggestion only): none (top layer)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
+
+### No tool to create and manage projects
+- Type: Problem
+- Description: The department has no tool to create a project and manage it through its life. Today this is done in Excel and by hand.
+- Home parent (suggestion only): Objective "Manage all department projects in one place"
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
 
 ## Solutions and sub-solutions
+
+### Landing page
+- Type: Solution
+- Description: The first screen anyone sees when they open the tool. It reads who is signed in and routes them straight to what matters to them — a project manager to "Project manager home dashboard"; other roles to their own view once those exist. There is no shared, generic home screen to sit through first.
+- Home parent (suggestion only): Problem "No tool to create and manage projects"
+- Also serves (suggestion only): none
+- Open questions: For v0.1, only the project-manager route has a real destination built. Other roles' routes stay placeholders until their views exist. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
+
+### Identify the visitor by role
+- Type: Feature
+- Description: The landing page shows a role picker. Clicking a role signs the visitor in as that role for the session — the prototype's stand-in for real authentication. The full role list and what each role can do is defined in "Access by role and owning general department" (see above, in this same draft); for v0.1 only "Project manager" is a real, functional choice.
+- Home parent (suggestion only): Solution "Landing page"
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
+
+### Route project manager to their dashboard
+- Type: Feature
+- Description: Clicking "Project manager" on the role picker routes straight to "Project manager home dashboard" (see draft-v0.1.md).
+- Home parent (suggestion only): Solution "Landing page"
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
+
+### Placeholder for other roles
+- Type: Feature
+- Description: Clicking any role other than "Project manager" shows a placeholder screen, not a real view — acknowledges the choice without functionality, since only the project-manager route has a built destination in v0.1.
+- Home parent (suggestion only): Solution "Landing page"
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from draft-v0.1.md; that file remains the source of truth — edit there, not here.)
 
 ### Duplicate a project
 - Type: Sub-solution
@@ -138,7 +184,7 @@ All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the ac
 
 ### Department portfolio view
 - Type: Solution
-- Description: One view of all department projects (past, current, planned), with progress rolled up for the whole department, not only per project.
+- Description: One view of all department projects (past, current, planned), with progress rolled up for the whole department, not only per project. Once "Landing page" (see above, in this same draft) routes by role, this is a likely landing view for decision makers.
 - Home parent (suggestion only): Problem "No department-wide view of all projects"
 - Also serves (suggestion only): Problem "Stakeholders don't see the pile-up of concurrent projects" — this view is where the pile-up becomes visible.
 - Open questions: none
@@ -215,7 +261,7 @@ All objectives and problems are staged in [draft-v0.1.md](draft-v0.1.md) (the ac
 
 ### Stakeholder view: only what concerns them
 - Type: Solution
-- Description: Stakeholders get a view built for them, showing only what concerns them. Each kind of information has a default, shared or internal. Shared by default: status, phases, health markers (including waiting on the business), hold reasons, decisions that affect the project, change requests, and the additional requirements raised by the business, each kept with its date. Internal by default: the names of resources, individual workload, and internal notes. The project manager can override the default for any single item.
+- Description: Stakeholders get a view built for them, showing only what concerns them. Each kind of information has a default, shared or internal. Shared by default: status, phases, health markers (including waiting on the business), hold reasons, decisions that affect the project, change requests, and the additional requirements raised by the business, each kept with its date. Internal by default: the names of resources, individual workload, and internal notes. The project manager can override the default for any single item. Once "Landing page" (see above, in this same draft) routes by role, this is the landing view for business users.
 - Home parent (suggestion only): Problem "Stakeholders can't be shown only what concerns them"
 - Also serves (suggestion only): none
 - Open questions: none

@@ -113,15 +113,20 @@ layers:[
 {key:"o",name:"Objectives",tone:"t1"},
 {key:"p",name:"Problems",tone:"t2"},
 {key:"s",name:"Solutions",tone:"t3"},
-{key:"u",name:"Sub-solutions",tone:"t4"}
+{key:"u",name:"Sub-solutions",tone:"t4"},
+{key:"f",name:"Features",tone:"t5"}
 ],
 nodes:[
+{id:"f1",layer:"f",short:"Identify by role",full:"Identify the visitor by role"},
+{id:"f2",layer:"f",short:"Route PM to dashboard",full:"Route project manager to their dashboard"},
+{id:"f3",layer:"f",short:"Placeholder, other roles",full:"Placeholder for other roles"},
 {id:"o1",layer:"o",short:"All projects in one place",full:"Manage all department projects in one place"},
 {id:"o2",layer:"o",short:"Accurate status to stakeholders",full:"Present accurate project status to stakeholders"},
 {id:"o3",layer:"o",short:"Everything documented",full:"Document everything about each project"},
 {id:"o4",layer:"o",short:"Protect the team from pressure",full:"Protect the team from scope creep and project pressure"},
 
 {id:"p8",layer:"p",short:"No tool to create projects",full:"No tool to create and manage projects"},
+{id:"s13",layer:"s",short:"Landing page",full:"Landing page (mirrored from draft-v0.1.md)"},
 {id:"p1",layer:"p",short:"No department-wide view",full:"No department-wide view of all projects"},
 {id:"p2",layer:"p",short:"Who is working on what",full:"Hard to see what each team member is working on"},
 {id:"p3",layer:"p",short:"No single source of truth",full:"No single source of truth for project status"},
@@ -171,6 +176,8 @@ nodes:[
 {id:"u29",layer:"u",short:"Search & filter list",full:"Search and filter the project list"}
 ],
 links:[
+["f1","s13",1],["f2","s13",1],["f3","s13",1],
+["s13","p8",1],["s1","s13",0],["s11","s13",0],
 ["p1","o1",1],["p2","o1",1],["p2","o4",0],["p3","o2",1],
 ["p3","o1",0],["p4","o3",1],["p5","o4",1],["p6","o4",1],
 ["p6","o2",0],["p7","o4",1],["s1","p1",1],["s1","p6",0],

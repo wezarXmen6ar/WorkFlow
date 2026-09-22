@@ -40,6 +40,7 @@ Objective (O-001) > Problem (P-001) > Solution (S-001) > Sub-solution (S-001.1) 
 - Keep a mind map beside the active draft (see below). Update it in the same pass as the tree.
 - Never move a draft into the main documents without the user's clear green light.
 - On the green light (a push): add the approved entries to the right main document, assign their IDs, set their "Serves" (home) parent and any "Also serves" parents, and record the push as a new version (see below). The draft file is then finished: mark its status as pushed with the date and never edit it again. Entries that were not approved move to a new draft file for the next version, and anything discussed after the push goes there too.
+- **Mirroring an update into a later draft:** when something is updated in the active (lower-version) draft and the user asks for that update to also be reflected in a later draft, first read that later draft's file and its map, and work out the full effect of the change there — which objectives, problems, solutions, sub-solutions, and features it touches or connects to, and how. Report that effect back to the user before changing anything. Only after the user confirms, mirror the item's complete chain — from its objective, through its problem, through the solution and sub-solution, down through every feature — in both the text and the map, not just the item itself. Never do any of this automatically; only when the user asks.
 
 ## The mind map
 
@@ -65,7 +66,7 @@ Objective (O-001) > Problem (P-001) > Solution (S-001) > Sub-solution (S-001.1) 
 ## Prototype first
 
 - We build a prototype (POC) first. Do not build the actual platform or tool until the user confirms the prototype sufficiently covers the full project scope and solutions.
-- Every feature in the prototype gets a small exclamation mark (!) marker. On hover it shows the feature's ID and name and every solution and sub-solution it serves, so features can be traced in real time while using or testing the prototype.
+- Every feature in the prototype gets a small exclamation mark (!) marker. On hover it shows the feature's ID and name and its full chain up to the objective — every solution and sub-solution it serves, the problem(s) those serve, and the objective(s) those serve — so features can be traced all the way up in real time while using or testing the prototype.
 - Only build features that exist in solutions.md with an ID and a complete chain up to an objective (see the rules above).
 - What the prototype must show and how it is judged is in [prototype.md](prototype.md). Follow it.
 
