@@ -37,21 +37,27 @@ Objective: Manage all department projects in one place
  └─ Problem: Hard to see what each team member is working on
      ├─ Solution: Resource assignment and workload tracking
      │   ├─ Sub-solution: Resource pool
-     │   └─ Sub-solution: Assign resources to phases
+     │   ├─ Sub-solution: Assign resources to phases
+     │   ├─ Sub-solution: Leave and absences
+     │   └─ Sub-solution: Person view
      └─ Solution: Phase progress reporting
          └─ Sub-solution: Project manager approval of progress
 
 Objective: Present accurate project status to stakeholders
- └─ Problem: No single source of truth for project status
-     └─ Solution: Live project status timeline
-         ├─ Sub-solution: Project phases
-         ├─ Sub-solution: Jira link for deployment and security testing
-         └─ Sub-solution: Access by role and owning general department
+ ├─ Problem: No single source of truth for project status
+ │   └─ Solution: Live project status timeline
+ │       ├─ Sub-solution: Project phases
+ │       ├─ Sub-solution: Jira link for deployment and security testing
+ │       ├─ Sub-solution: Project health, quiet by default
+ │       └─ Sub-solution: Access by role and owning general department
+ └─ Problem: Stakeholders can't be shown only what concerns them
+     └─ Solution: Stakeholder view: only what concerns them
+         └─ Sub-solution: Shared or internal, per item
 
 Objective: Document everything about each project
  ├─ Problem: Project files and context depend on each project manager
  │   └─ Solution: Central project file repository
- │       ├─ Sub-solution: Handover to a covering project manager
+ │       ├─ Sub-solution: Second project manager and takeover
  │       ├─ Sub-solution: Meeting records
  │       └─ Sub-solution: Attach documents to projects and phases
  └─ Problem: No history log for projects
@@ -65,16 +71,18 @@ Objective: Protect the team from scope creep and project pressure
  │       └─ Sub-solution: Original plan vs current plan
  ├─ Problem: Stakeholders don't see the pile-up of concurrent projects
  │   └─ Solution: Workload indicator on the department-wide view
+ │       └─ Sub-solution: Capacity check in the yearly plan
  └─ Problem: The cost of priority shifts is invisible
      └─ Solution: Show the price of a change across all projects before it is confirmed
          ├─ Sub-solution: Automatic pull and delay calculation
          ├─ Sub-solution: Price shown, confirm before applying
-         └─ Sub-solution: Decision log
+         ├─ Sub-solution: Decision log
+         └─ Sub-solution: Project priority
 ```
 
 ## Also serves
 
-Twenty-three entries serve more than one parent.
+Twenty-seven entries serve more than one parent.
 
 | Entry | Also serves |
 |---|---|
@@ -98,7 +106,11 @@ Twenty-three entries serve more than one parent.
 | Central project file repository | Problem: No history log for projects |
 | Attach documents to projects and phases | Solution: Project history log |
 | Log a new requirement with its estimated development days | Solution: Project history log |
-| Access by role and owning general department | Solutions: Department portfolio view; Workload indicator |
+| Capacity check in the yearly plan | Solution: Department portfolio view |
+| Leave and absences | Solution: Workload indicator on the department-wide view |
+| Project priority | Solution: Department portfolio view |
+| Person view | Solution: Phase progress reporting |
+| Access by role and owning general department | Solutions: Department portfolio view; Workload indicator; Stakeholder view: only what concerns them |
 | Highlight the impact | Solution: Show the price of a change across all projects before it is confirmed |
 | Price shown, confirm before applying | Solution: Show the impact of new requirements before work starts |
 
@@ -162,6 +174,13 @@ Twenty-three entries serve more than one parent.
 - Also serves (suggestion only): Objective "Manage all department projects in one place"
 - Open questions: none
 
+### Stakeholders can't be shown only what concerns them
+- Type: Problem
+- Description: Project information is a mix of what concerns stakeholders (status, what is waiting on them, decisions that affect their project) and what does not (internal team work, internal notes). With no way to choose, stakeholders either see everything, which overwhelms them and loses the simplicity, or too little.
+- Home parent (suggestion only): Objective "Present accurate project status to stakeholders"
+- Also serves (suggestion only): none
+- Open questions: none
+
 ### Project files and context depend on each project manager
 - Type: Problem
 - Description: Files, context, and history rely on each project manager's own organization, so handover during leave is unreliable.
@@ -201,7 +220,7 @@ Twenty-three entries serve more than one parent.
 
 ### Create and manage projects
 - Type: Solution
-- Description: One place where the project manager creates a project and manages it through its life. Creating a project sets its name, owning general department, business and GDAI project managers, start quarter (no end date needed yet), phases with planned time frames, and the assigned team. From then on the project is managed here: progress, changes, and launch. A project is always in one of four states: planned (with a future start date, or with no start date because no decision to start has been made yet), active, on hold, or launched.
+- Description: One place where the project manager creates a project and manages it through its life. Creating a project sets its name, owning general department, business and GDAI project managers, start quarter (no end date needed yet), phases with planned time frames, and the assigned team. From then on the project is managed here: progress, changes, and launch. A project is always in one of four states: planned (with a future start date, or with no start date because no decision to start has been made yet), active, on hold, or launched. A project on hold always has a reason: waiting for business approval, waiting for a requirement, resources pulled to another project, or another reason. The reason and the days on hold show on the timeline.
 - Home parent (suggestion only): Problem "No tool to create and manage projects"
 - Also serves (suggestion only): none
 - Open questions: none
@@ -248,6 +267,20 @@ Twenty-three entries serve more than one parent.
 - Also serves (suggestion only): Solutions "Workload indicator on the department-wide view", "Show the price of a change across all projects before it is confirmed", and "Create and manage projects" — the first two need the real time each person spends per phase; the third assigns the team when a project is created. Depends on "Resource pool" and "Project phases".
 - Open questions: none
 
+### Leave and absences
+- Type: Sub-solution
+- Description: Leave and absences are entered by hand per person in the tool, with no integration to any other system. Capacity excludes them, and assigning someone to a phase during their leave shows a warning.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
+- Also serves (suggestion only): Solution "Workload indicator on the department-wide view" — capacity is worked out after leave.
+- Open questions: none
+
+### Person view
+- Type: Sub-solution
+- Description: Clicking anyone in the resource pool shows their timeline: projects, phases, and planned against actual days. For project managers it also shows the reports waiting for their confirmation. Only GDAI staff see it; stakeholders never see the names of the resources.
+- Home parent (suggestion only): Solution "Resource assignment and workload tracking"
+- Also serves (suggestion only): Solution "Phase progress reporting" — it shows the reports waiting for confirmation.
+- Open questions: none
+
 ### Phase progress reporting
 - Type: Solution
 - Description: Whoever is assigned to a phase reports on it: the days they actually spent and when the phase is done (for example, analysis planned for five days, the analyst reports three and marks it done). Developers report progress on the development phase as a share of the whole development (for example, a finished task worth 10%). Applies to every phase. Progress counts only after the project manager confirms it.
@@ -283,12 +316,33 @@ Twenty-three entries serve more than one parent.
 - Also serves (suggestion only): none
 - Open questions: Does the tool only link to the Jira ticket and the project manager sets the status, or does it pull the status from Jira automatically?
 
+### Project health, quiet by default
+- Type: Sub-solution
+- Description: Each project shows its health on the project itself, worked out automatically from its plan. Only two conditions are marked: late (measured against the current plan, after confirmed changes) and waiting on the business (on hold for a business approval or a requirement, shown with the days waiting). An on-track project shows nothing special. There are no notifications, no alert lists, and no counters: nothing asks for action, and health is only seen by whoever looks. The project manager can override the health with a reason, which goes on record in the history log. This is deliberate, so the tool is never filled with alerts and abandoned. The waiting-on-the-business marker is visible to stakeholders on their own projects.
+- Home parent (suggestion only): Solution "Live project status timeline"
+- Also serves (suggestion only): none
+- Open questions: none
+
 ### Access by role and owning general department
 - Type: Sub-solution
-- Description: Roles: (1) GDAI project managers manage their projects, keep them updated, and approve developer progress. (2) Developers report progress on their assigned phases. (3) Business analysts see the projects they are assigned to, report on their phases, and can add project documents (for example the BA analysis document), but have no project-manager rights. (4) Business users see only projects owned by their general department; decision makers see all projects. Business users and decision makers only view: they never enter data, requests, or input of any kind. Each project also has a business project manager, an optional vice project manager on the business side, and a GDAI technical project manager.
+- Description: Roles: (1) GDAI project managers manage their projects, keep them updated, and approve developer progress. (2) Developers report progress on their assigned phases. (3) Business analysts see the projects they are assigned to, report on their phases, and can add project documents (for example the BA analysis document), but have no project-manager rights. (4) Business users see only projects owned by their general department; decision makers see all projects. Both can see the names of the project managers (business side and GDAI) but never the names of the resources (tech leads, developers, BAs). Business users and decision makers only view: they never enter data, requests, or input of any kind. Each project also has a business project manager, an optional vice project manager on the business side, and a GDAI technical project manager.
 - Home parent (suggestion only): Solution "Live project status timeline"
-- Also serves (suggestion only): Solutions "Department portfolio view" and "Workload indicator on the department-wide view" — the same rule applies to every view.
+- Also serves (suggestion only): Solutions "Department portfolio view", "Workload indicator on the department-wide view", and "Stakeholder view: only what concerns them" — the same rule applies to every view, and it is the base for what stakeholders see.
 - Open questions: Are the business-side project manager and vice project manager view-only like the other business users?
+
+### Stakeholder view: only what concerns them
+- Type: Solution
+- Description: Stakeholders get a view built for them, showing only what concerns them. Each kind of information has a default, shared or internal. Shared by default: status, phases, health markers (including waiting on the business), hold reasons, decisions that affect the project, change requests, and the additional requirements raised by the business, each kept with its date. Internal by default: the names of resources, individual workload, and internal notes. The project manager can override the default for any single item.
+- Home parent (suggestion only): Problem "Stakeholders can't be shown only what concerns them"
+- Also serves (suggestion only): none
+- Open questions: none
+
+### Shared or internal, per item
+- Type: Sub-solution
+- Description: Every entry (a document, a decision, a meeting, a note, a marker) carries a shared or internal setting. The project manager can change it at any time.
+- Home parent (suggestion only): Solution "Stakeholder view: only what concerns them"
+- Also serves (suggestion only): none
+- Open questions: none
 
 ### Central project file repository
 - Type: Solution
@@ -297,12 +351,12 @@ Twenty-three entries serve more than one parent.
 - Also serves (suggestion only): Problem "No history log for projects" — official documents and letters are stored here with their dates.
 - Open questions: none
 
-### Handover to a covering project manager
+### Second project manager and takeover
 - Type: Sub-solution
-- Description: When a project manager goes on leave, their projects are handed to a covering project manager for that period. The cover gets full access to everything: documents, context, and history, each with its upload date. Nothing depends on the original manager's own organization.
+- Description: A project can have a second project manager with the same rights, so nothing needs to happen when one is away. If a project manager is pulled from a project entirely, any other project manager can take their place. Because the history, attachments, and context are all in the tool, no handover steps are needed.
 - Home parent (suggestion only): Solution "Central project file repository"
 - Also serves (suggestion only): none
-- Open questions: Should the cover also get an automatic summary of each project (current phase, pending items, latest files)?
+- Open questions: none
 
 ### Meeting records
 - Type: Sub-solution
@@ -381,9 +435,23 @@ Twenty-three entries serve more than one parent.
 - Also serves (suggestion only): Solutions "Show the impact of new requirements before work starts" and "Project history log" — added requirements are confirmed and recorded the same way, and every decision is part of the project's history.
 - Open questions: The drop-down needs a list of people and their positions. Is it the same list used for the access rules (business users and decision makers), and who keeps it up to date?
 
+### Project priority
+- Type: Sub-solution
+- Description: Every project has a priority: low, normal, high, or the special level crucial. Crucial is reserved for an order from the decision makers or someone with power, and it outranks every other level; it is recorded with who ordered it, their position, and the official letter if there is one. The portfolio view sorts by it. When a resource is pulled, the tool suggests pulling from the lowest-priority project and shows that in the price. Priority changes are recorded in the decision log with who decided.
+- Home parent (suggestion only): Solution "Show the price of a change across all projects before it is confirmed"
+- Also serves (suggestion only): Solution "Department portfolio view" — the view sorts by priority.
+- Open questions: none
+
 ### Workload indicator on the department-wide view
 - Type: Solution
-- Description: Show the department's load by quarter (zoomable to month) on the department-wide view. Load is the development days of all assigned work divided by the development days the resource pool has available in that period; over 100% means the department has more work than resources. Work on projects put on hold still counts as assigned workload, so the true demand stays visible. Colored from green to red. Needs development-day estimates per project and data from the "Resource pool". The what-if preview when new work is added belongs to "Show the price of a change across all projects before it is confirmed", which shows the load rising before confirmation.
+- Description: Show the department's load by quarter (zoomable to month) on the department-wide view. Load is the development days of all assigned work divided by the development days the resource pool has available in that period; over 100% means the department has more work than resources. Work on projects put on hold still counts as assigned workload, so the true demand stays visible. Colored from green to red. Needs development-day estimates per project and data from the "Resource pool". A project without an estimate still counts as a project but adds no effort to the load. The what-if preview when new work is added belongs to "Show the price of a change across all projects before it is confirmed", which shows the load rising before confirmation.
 - Home parent (suggestion only): Problem "Stakeholders don't see the pile-up of concurrent projects"
 - Also serves (suggestion only): none
 - Open questions: With all roles in the pool, is the load shown per role (developers, BAs, and so on) or as one overall figure? Do planned projects that have no decision to start yet count toward the load?
+
+### Capacity check in the yearly plan
+- Type: Sub-solution
+- Description: While the yearly plan is built, each quarter shows its load against capacity, the same indicator used elsewhere. Adding a project to a quarter makes the load rise before decision makers approve the plan. A rough size in development days can be given when a project is logged, but not always. A project without a size still counts as a project in its quarter, but its effort is not included in the load, and the quarter shows how many unsized projects it holds.
+- Home parent (suggestion only): Solution "Workload indicator on the department-wide view"
+- Also serves (suggestion only): Solution "Department portfolio view" — it lives inside the yearly plan.
+- Open questions: none

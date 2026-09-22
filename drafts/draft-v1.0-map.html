@@ -125,6 +125,7 @@ nodes:[
 {id:"p1",layer:"p",short:"No department-wide view",full:"No department-wide view of all projects"},
 {id:"p2",layer:"p",short:"Who is working on what",full:"Hard to see what each team member is working on"},
 {id:"p3",layer:"p",short:"No single source of truth",full:"No single source of truth for project status"},
+{id:"p10",layer:"p",short:"Stakeholders see too much",full:"Stakeholders can't be shown only what concerns them"},
 {id:"p4",layer:"p",short:"Files depend on the PM",full:"Project files and context depend on each project manager"},
 {id:"p9",layer:"p",short:"No history log",full:"No history log for projects"},
 {id:"p5",layer:"p",short:"Requirements added, no cost",full:"Requirements keep being added with no visible cost"},
@@ -136,6 +137,7 @@ nodes:[
 {id:"s2",layer:"s",short:"Resource assignment",full:"Resource assignment and workload tracking"},
 {id:"s3",layer:"s",short:"Phase progress",full:"Phase progress reporting"},
 {id:"s4",layer:"s",short:"Status timeline",full:"Live project status timeline"},
+{id:"s11",layer:"s",short:"Stakeholder view",full:"Stakeholder view: only what concerns them"},
 {id:"s5",layer:"s",short:"File repository",full:"Central project file repository"},
 {id:"s10",layer:"s",short:"History log",full:"Project history log"},
 {id:"s6",layer:"s",short:"Requirement impact",full:"Show the impact of new requirements before work starts"},
@@ -156,9 +158,15 @@ nodes:[
 {id:"u12",layer:"u",short:"Assign to phases",full:"Assign resources to phases"},
 {id:"u13",layer:"u",short:"Decision log",full:"Decision log"},
 {id:"u14",layer:"u",short:"Original vs current plan",full:"Original plan vs current plan"},
-{id:"u15",layer:"u",short:"Covering PM handover",full:"Handover to a covering project manager"},
+{id:"u15",layer:"u",short:"Second PM, takeover",full:"Second project manager and takeover"},
 {id:"u16",layer:"u",short:"Meeting records",full:"Meeting records"},
-{id:"u17",layer:"u",short:"Attach documents",full:"Attach documents to projects and phases"}
+{id:"u17",layer:"u",short:"Attach documents",full:"Attach documents to projects and phases"},
+{id:"u18",layer:"u",short:"Project health",full:"Project health, quiet by default"},
+{id:"u19",layer:"u",short:"Capacity check in plan",full:"Capacity check in the yearly plan"},
+{id:"u20",layer:"u",short:"Leave and absences",full:"Leave and absences"},
+{id:"u21",layer:"u",short:"Project priority",full:"Project priority"},
+{id:"u22",layer:"u",short:"Person view",full:"Person view"},
+{id:"u23",layer:"u",short:"Shared or internal",full:"Shared or internal, per item"}
 ],
 links:[
 ["p1","o1",1],["p2","o1",1],["p2","o4",0],["p3","o2",1],["p3","o1",0],
@@ -178,7 +186,10 @@ links:[
 ["u3","s9",0],["u1","s9",0],["u12","s9",0],
 ["u16","s5",1],["u16","s8",0],
 ["p9","o3",1],["p9","o4",0],["s10","p9",1],["s5","p9",0],
-["u17","s5",1],["u17","s10",0],["u13","s10",0],["u5","s10",0],["u16","s10",0]
+["u17","s5",1],["u17","s10",0],["u13","s10",0],["u5","s10",0],["u16","s10",0],
+["u18","s4",1],["u19","s7",1],["u19","s1",0],["u20","s2",1],["u20","s7",0],
+["u21","s8",1],["u21","s1",0],["u22","s2",1],["u22","s3",0],
+["p10","o2",1],["s11","p10",1],["u23","s11",1],["u4","s11",0]
 ]
 };
 
