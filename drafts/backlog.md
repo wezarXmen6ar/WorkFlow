@@ -15,6 +15,7 @@ Objective: Manage all department projects in one place (O-001)
  ├─ Problem: No tool to create and manage projects (P-001)
  │   ├─ Solution: Create and manage projects (S-002) · also serves: Project files and context depend on each project manager (P-006)
  │   │   ├─ Sub-solution: Project phases (S-002.1) — AMENDED · also serves: Live project status timeline
+ │   │   │   └─ Feature: Timeline / phase builder (F-006) — AMENDED
  │   │   ├─ Sub-solution: Duplicate a project — NEW
  │   │   ├─ Sub-solution: Archive and permanent delete — NEW · also serves: Live project status timeline
  │   │   └─ Feature: JIRA / PRJ reference number — NEW
@@ -488,6 +489,13 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Amends: S-003.1
 - Description: Once "Live project status timeline" is pushed, At-a-glance project status also serves it. The older drafts noted this link as one to add later.
 - Also serves: "Live project status timeline"
+
+### Timeline as a real dated schedule, with reordering
+- Type: Amendment
+- Amends: F-006
+- Description: The timeline is currently an abstract proportional bar — it shows the ratio of phases' work-days but no schedule. Make it a real dated timeline, using the start date and per-phase working-days already captured: (1) compute each phase's actual calendar span (phase 1 runs from the start date for its work-days, each next phase picks up where the previous ends, skipping weekends), so every phase has real dates; (2) lay it out Gantt-style — one row per phase, positioned and sized by its dates, with the hold as its own row where it applies — instead of one cramped segmented strip; (3) show each phase's computed date range next to it in the phase list as the plan is built; (4) let phases be reordered (move up/down), shifting the downstream dates live (S-002.1 already says a project "orders its own phases," but there is no way to reorder after adding). Planned schedule only; actual progress stays out of scope (that is "Phase progress reporting").
+- Also serves: none
+- Priority: Next
 
 ---
 
