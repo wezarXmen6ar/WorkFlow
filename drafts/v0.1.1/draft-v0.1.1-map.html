@@ -139,8 +139,20 @@ layers:[
 ],
 nodes:[
 {id:"O-001",layer:"o",short:"All projects in one place",full:"Manage all department projects in one place"},
+{id:"O-002",layer:"o",short:"Accurate status to stakeholders",full:"Present accurate project status to stakeholders"},
+{id:"O-003",layer:"o",short:"Everything documented",full:"Document everything about each project"},
+{id:"O-004",layer:"o",short:"Protect the team from pressure",full:"Protect the team from scope creep and project pressure"},
 
 {id:"P-001",layer:"p",short:"No tool to create projects",full:"No tool to create and manage projects"},
+{id:"P-002",layer:"p",short:"No department-wide view",full:"No department-wide view of all projects"},
+{id:"P-003",layer:"p",short:"Who is working on what",full:"Hard to see what each team member is working on"},
+{id:"P-004",layer:"p",short:"No single source of truth",full:"No single source of truth for project status"},
+{id:"P-005",layer:"p",short:"Stakeholders see too much",full:"Stakeholders can't be shown only what concerns them"},
+{id:"P-006",layer:"p",short:"Files depend on the PM",full:"Project files and context depend on each project manager"},
+{id:"P-007",layer:"p",short:"No history log",full:"No history log for projects"},
+{id:"P-008",layer:"p",short:"Requirements added, no cost",full:"Requirements keep being added with no visible cost"},
+{id:"P-009",layer:"p",short:"Pile-up is not seen",full:"Stakeholders don't see the pile-up of concurrent projects"},
+{id:"P-010",layer:"p",short:"Priority shifts look free",full:"The cost of priority shifts is invisible"},
 
 {id:"S-002",layer:"s",short:"Create and manage",full:"Create and manage projects"},
 
@@ -154,6 +166,15 @@ nodes:[
 ],
 links:[
 ["P-001","O-001",1],
+["P-002","O-001",1],
+["P-003","O-001",1],["P-003","O-004",0],
+["P-004","O-002",1],["P-004","O-001",0],
+["P-005","O-002",1],
+["P-006","O-003",1],
+["P-007","O-003",1],["P-007","O-004",0],
+["P-008","O-004",1],
+["P-009","O-004",1],["P-009","O-002",0],
+["P-010","O-004",1],
 ["S-002","P-001",1],
 ["S-002.1","S-002",1],
 ["F-004","S-002",1],

@@ -37,22 +37,107 @@ Objective: Manage all department projects in one place
 
 ## Objectives and problems
 
-All four objectives and all ten problems already pushed in [objectives.md](../../objectives.md) and [problems.md](../../problems.md) stay exactly as they are — kept, not pruned. We discussed cutting them down to only what v0.1's built solutions touch and decided against it: CLAUDE.md treats objectives and problems as the stable top of the hierarchy, meant to be established in full before all their solutions exist ("stability decreases top to bottom... treat upper layers as stable anchors"). Pruning now would just mean re-adding entries at every future push as scope reaches further into the problem space. Referenced here by ID only; full descriptions live in objectives.md and problems.md, not repeated here.
+All four objectives and all ten problems already pushed in [objectives.md](../../objectives.md) and [problems.md](../../problems.md) stay exactly as they are — kept, not pruned. We discussed cutting them down to only what v0.1's built solutions touch and decided against it: CLAUDE.md treats objectives and problems as the stable top of the hierarchy, meant to be established in full before all their solutions exist ("stability decreases top to bottom... treat upper layers as stable anchors"). Pruning now would just mean re-adding entries at every future push as scope reaches further into the problem space.
 
-- O-001 Manage all department projects in one place
-- O-002 Present accurate project status to stakeholders
-- O-003 Document everything about each project
-- O-004 Protect the team from scope creep and project pressure
-- P-001 No tool to create and manage projects
-- P-002 No department-wide view of all projects
-- P-003 Hard to see what each team member is working on
-- P-004 No single source of truth for project status
-- P-005 Stakeholders can't be shown only what concerns them
-- P-006 Project files and context depend on each project manager
-- P-007 No history log for projects
-- P-008 Requirements keep being added with no visible cost
-- P-009 Stakeholders don't see the pile-up of concurrent projects
-- P-010 The cost of priority shifts is invisible
+Included here in full, same as every draft carries them. Mirrored from objectives.md and problems.md; those files remain the source of truth — edit there, not here.
+
+### O-001: Manage all department projects in one place
+- Type: Objective
+- Description: One tool to manage every project the department has worked on, is working on, and will work on, including the yearly plan and the big picture.
+- Home parent (suggestion only): none (top layer)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from objectives.md; that file remains the source of truth — edit there, not here.)
+
+### O-002: Present accurate project status to stakeholders
+- Type: Objective
+- Description: Show stakeholders, decision makers, and business users the real status of projects from one source, and show the team's hard work.
+- Home parent (suggestion only): none (top layer)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from objectives.md; that file remains the source of truth — edit there, not here.)
+
+### O-003: Document everything about each project
+- Type: Objective
+- Description: Keep all project documents, context, and history in one place so anyone can take over a project.
+- Home parent (suggestion only): none (top layer)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from objectives.md; that file remains the source of truth — edit there, not here.)
+
+### O-004: Protect the team from scope creep and project pressure
+- Type: Objective
+- Description: Make the cost of new requirements, new priorities, and project pile-up visible to stakeholders and decision makers.
+- Home parent (suggestion only): none (top layer)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from objectives.md; that file remains the source of truth — edit there, not here.)
+
+### P-001: No tool to create and manage projects
+- Type: Problem
+- Description: The department has no tool to create a project and manage it through its life. Today this is done in Excel and by hand.
+- Home parent (suggestion only): Objective "Manage all department projects in one place" (O-001)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-002: No department-wide view of all projects
+- Type: Problem
+- Description: Past, current, and planned projects are not visible in one place, so planning the year by quarter and seeing the big picture is hard.
+- Home parent (suggestion only): Objective "Manage all department projects in one place" (O-001)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-003: Hard to see what each team member is working on
+- Type: Problem
+- Description: It is difficult to keep up with what developers, business analysts, tech leads, and project managers are working on.
+- Home parent (suggestion only): Objective "Manage all department projects in one place" (O-001)
+- Also serves (suggestion only): Objective "Protect the team from scope creep and project pressure" (O-004)
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-004: No single source of truth for project status
+- Type: Problem
+- Description: Presentations are prepared manually, differ by preparer, and sometimes conflict. Finished projects get reported as unfinished because there is no central status.
+- Home parent (suggestion only): Objective "Present accurate project status to stakeholders" (O-002)
+- Also serves (suggestion only): Objective "Manage all department projects in one place" (O-001)
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-005: Stakeholders can't be shown only what concerns them
+- Type: Problem
+- Description: Project information is a mix of what concerns stakeholders (status, what is waiting on them, decisions that affect their project) and what does not (internal team work, internal notes). With no way to choose, stakeholders either see everything, which overwhelms them and loses the simplicity, or too little.
+- Home parent (suggestion only): Objective "Present accurate project status to stakeholders" (O-002)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-006: Project files and context depend on each project manager
+- Type: Problem
+- Description: Files, context, and history rely on each project manager's own organization, so handover during leave is unreliable.
+- Home parent (suggestion only): Objective "Document everything about each project" (O-003)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-007: No history log for projects
+- Type: Problem
+- Description: Nothing records what happened to a project and when: when a requirement was given, when a change request was approved, when a hold was ordered and approved. Official documents and letters about a project (updates, approvals, orders) have nowhere to be stored with their dates.
+- Home parent (suggestion only): Objective "Document everything about each project" (O-003)
+- Also serves (suggestion only): Objective "Protect the team from scope creep and project pressure" (O-004)
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-008: Requirements keep being added with no visible cost
+- Type: Problem
+- Description: Business users and decision makers add requirements mid-project without seeing the cost to the timeline, yet still expect the agreed due date.
+- Home parent (suggestion only): Objective "Protect the team from scope creep and project pressure" (O-004)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-009: Stakeholders don't see the pile-up of concurrent projects
+- Type: Problem
+- Description: Business users and decision makers expect many projects to run at once without realizing the pressure and accumulation.
+- Home parent (suggestion only): Objective "Protect the team from scope creep and project pressure" (O-004)
+- Also serves (suggestion only): Objective "Present accurate project status to stakeholders" (O-002)
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
+
+### P-010: The cost of priority shifts is invisible
+- Type: Problem
+- Description: When a new high-priority project pulls resources from a running one, stakeholders don't see the price of that decision and still expect the old project on time.
+- Home parent (suggestion only): Objective "Protect the team from scope creep and project pressure" (O-004)
+- Also serves (suggestion only): none
+- Open questions: none. (Mirrored from problems.md; that file remains the source of truth — edit there, not here.)
 
 ## Entries
 
