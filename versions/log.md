@@ -1,14 +1,20 @@
-# Version Log
+# Version log
 
-Every push from a draft file in [drafts/](../drafts/) into the main documents is recorded here. Each version has a full copy of objectives.md, problems.md, and solutions.md in its own folder (`v1.0/`, `v1.1/`, ...). To reverse a push, restore the previous version.
+One entry per push, oldest first, written by `python workflow/tool.py record-push`. Each `versions/vX/` folder holds that version: the plan as pushed, its map, the draft that proposed it, and the prototype built for it.
+
+Never edit or delete an entry. The only lines that change afterwards: `save-prototype` fills in the Prototype line, and a reversed version gets its Rollback line filled in.
 
 **Entry format**
 
 ```
-## v1.0 (YYYY-MM-DD)
-- Draft: drafts/v1.0/draft-v1.0.md
-- Pushed: IDs and titles
-- Rollback: none | reversed on YYYY-MM-DD, restored from v1.x
+## v0.1 (YYYY-MM-DD)
+- Draft: versions/v0.1/draft-v0.1.md
+- Note: (optional) what this version is about
+- Added: IDs and titles
+- Amended: IDs and titles
+- Retired: IDs and titles
+- Prototype: not saved yet | saved on YYYY-MM-DD
+- Rollback: none | reversed on YYYY-MM-DD, restored from v0.x
 ```
 
 ---
@@ -21,4 +27,14 @@ Every push from a draft file in [drafts/](../drafts/) into the main documents is
   - Solutions: S-001 Landing page; S-002 Create and manage projects; S-003 Project manager home dashboard
   - Sub-solutions: S-002.1 Project phases; S-003.1 At-a-glance project status
   - Features: F-001 Identify the visitor by role; F-002 Route project manager to their dashboard; F-003 Placeholder for other roles; F-004 Create a project — core details; F-005 Definition tables: scope, problem statements, objectives; F-006 Timeline / phase builder
+- Prototype: saved on 2026-09-23
+- Rollback: none
+
+## v0.1.1 (2026-09-23)
+- Draft: versions/v0.1.1/draft-v0.1.1.md
+- Note: Switch to the new workflow and folder structure; no content changes
+- Added: none
+- Amended: none
+- Retired: none
+- Prototype: not saved yet
 - Rollback: none

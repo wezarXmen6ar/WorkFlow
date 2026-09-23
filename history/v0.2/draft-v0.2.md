@@ -1,9 +1,9 @@
 # Draft for v0.2
 
-**Status:** Pending. Deferred until after v0.1 is pushed and its prototype slice is built; not the active draft.
+**Status:** Retired on 2026-09-23, at the switch to the new workflow. Its unpushed ideas moved to drafts/backlog.md; see history/README.md.
 **Map:** [draft-v0.2-map.html](draft-v0.2-map.html)
 
-Staging area for anything discussed that could go into [objectives.md](../../objectives.md), [problems.md](../../problems.md), or [solutions.md](../../solutions.md).
+Staging area for anything discussed that could go into [objectives.md](../../plan/objectives.md), [problems.md](../../plan/problems.md), or [solutions.md](../../plan/solutions.md).
 
 Nothing here has an ID. Entries move to the main documents only after the user's green light, and get an ID and a "Serves" parent at that point. Once this draft is pushed, this file is finished and never edited again; anything new goes into the next draft file.
 

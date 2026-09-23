@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorkFlow — my projects</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="brand">WorkFlow</span>
+    <nav>
+      <a href="index.html">Sign out</a>
+      <a href="create-project.html" class="btn primary" style="margin-left:14px">+ Create project</a>
+    </nav>
+  </div>
+
+  <h1 data-trace="F-002">Project manager home dashboard</h1>
+  <p class="sub">Every project you currently manage, at a glance (S-003 / S-003.1).</p>
+
+  <div id="list"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+const list = document.getElementById("list");
+const projects = loadProjects().sort((a, b) => b.createdAt - a.createdAt);
+
+if (!projects.length) {
+  list.innerHTML = `<div class="empty-state">No projects yet. <a href="create-project.html">Create your first one</a>.</div>`;
+} else {
+  projects.forEach((p) => {
+    const glance = atAGlanceLine(p);
+    const card = document.createElement("div");
+    card.className = "proj-card";
+    card.dataset.trace = "S-003.1";
+    card.innerHTML = `
+      <div class="name">${escHtml(p.name)}</div>
+      <div class="sub" style="margin:0">${escHtml(p.businessUser || "No department set")} · ${p.phases.length} phase${p.phases.length === 1 ? "" : "s"} planned</div>
+      <div class="status ${glance.tone === "hold" ? "hold" : glance.tone === "active" ? "active" : "planned"}">${escHtml(glance.text)}</div>
+    `;
+    list.appendChild(card);
+  });
+}
+initMarkers(document.body);
+</script>
+</body>
+</html>

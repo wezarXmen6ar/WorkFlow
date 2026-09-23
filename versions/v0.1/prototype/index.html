@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorkFlow — sign in</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>WorkFlow</h1>
+    <p class="sub">Landing page (S-001) — who's here decides what they see next.</p>
+  </header>
+
+  <div id="roles" class="role-grid"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+const ROLES = [
+  { key: "pm", label: "Project Manager", real: true },
+  { key: "team_member", label: "Team Member", real: false },
+  { key: "developer", label: "Developer", real: false },
+  { key: "business_user", label: "Business User", real: false },
+  { key: "decision_maker", label: "Decision Maker", real: false },
+];
+
+const rolesEl = document.getElementById("roles");
+ROLES.forEach((r) => {
+  const a = document.createElement("a");
+  a.href = r.real ? "dashboard.html" : `placeholder.html?role=${encodeURIComponent(r.label)}`;
+  a.className = "role-card";
+  a.dataset.trace = r.real ? "F-001 F-002" : "F-001 F-003";
+  a.textContent = r.label;
+  rolesEl.appendChild(a);
+});
+
+initMarkers(rolesEl);
+</script>
+</body>
+</html>
