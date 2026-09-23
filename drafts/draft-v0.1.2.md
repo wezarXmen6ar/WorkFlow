@@ -72,11 +72,14 @@ To change something that is already pushed:
 - Description: The create/manage screen lets the project manager set and change the project's status: planned, active, on hold, or launched — the four states already named in S-002's own description, not yet captured as an actual field anywhere. Choosing "on hold" requires a reason: waiting for business approval, waiting for a requirement, resources pulled to another project, or another. The status, and — if on hold — the reason and days on hold, are what "At-a-glance project status" (S-003.1) reads to build the dashboard's status line.
 - Serves: S-002
 - Also serves: none
+- Done when: The project manager can set a project's status to planned, active, on hold, or launched; choosing on hold asks for a reason, and the dashboard shows the status (and, when on hold, the reason and days on hold).
+- Design location: Create/manage project screen
 - Open questions: When status is set to "on hold," is the reason picked from that fixed list only, or can a custom reason be added inline the same way a department can be? How does this relate to the new "Hold" phase below — does adding a Hold block to the timeline set this status automatically, or are the two entered independently?
 
 ### Project phases — amendment
 - Type: Amendment
 - Amends: S-002.1
+- New text: Phases are fully flexible: nothing is always the same, and a small project can skip some. When creating a project, the project manager adds its phases and a planned time frame for each (for example, analysis: five days). Each project picks and orders its own phases (and can add custom ones), and the timeline shows them. The project's end date never moves automatically when a phase takes fewer or more days than planned. Known phases: requirements gathering, BA analysis document (approved by the business user), development planning (optional; sets the timeline and end date), development, UAT, security testing, deployment, pilot on a small sample, and hold (a hold period shown as its own block on the timeline).
 - Description: Two changes to the known phase list and its rules:
   1. Add **Hold** to the known phase list, so a hold period can be represented directly as its own block on the phase timeline (in addition to, and separate from, the project-level status above).
   2. Drop the "Security testing and deployment are mandatory in the department's process" line. Every project picks and orders its own phases freely — nothing is forced. (This also resolves S-002.1's old open question about flagging a missing mandatory phase: there is no such flag, by design.)
@@ -86,6 +89,7 @@ To change something that is already pushed:
 ### Timeline / phase builder — amendment
 - Type: Amendment
 - Amends: F-006
+- New text: While creating or editing a project, phases are added as blocks chosen from "Project phases"'s known list (or a custom one) and shown as colored bars on a horizontal timeline. Each phase optionally takes a planned number of work days. The timeline's axis uses the project's start and end dates if they were set; otherwise it is built from the summed work-days of the phases added; if neither is available, it stays empty. When a start date is set, the end date is calculated as the start date plus the summed planned work-days of every phase and shown live; if the project manager also chose an end date, both show side by side. It recalculates whenever a phase is added, edited, reordered, or removed, and never overwrites the chosen end date.
 - Description: When a start date is set, the end date is automatically calculated as start date + the summed planned work-days of every phase added, and shown live. If the project manager also entered their own end date, both show side by side: the end date they chose, and the calculated end date the current phase plan works out to. This recalculates continuously whenever a phase is added, edited (work-days changed), reordered, or removed — during creation and later, whenever the phase plan is edited (see "Open and edit a project" below).
 
   This is distinct from S-002.1's existing rule that "the project's end date never moves automatically when a phase takes fewer or more days than planned" — that rule protects the *committed* end date from drifting once a project is underway and a phase runs long or short in practice. The calculation here is a planning aid built from the *planned* phase work-days; it never overwrites the project manager's own chosen end date, it's just shown alongside it.
@@ -97,6 +101,8 @@ To change something that is already pushed:
 - Description: Clicking a project on the project manager home dashboard opens it into the same fields used to create it — core details, definition tables, and phases/timeline (including the live end-date calculation above) — pre-filled with what's there, editable by the project manager. Saving updates the project in place. This is what makes S-002's own description ("managed here: progress, changes, and launch... some fields can be edited after creation") actually reachable after a project exists, not only at creation.
 - Serves: S-002
 - Also serves: none
+- Done when: Clicking a project on the dashboard opens it in the create fields, pre-filled; saving updates the project in place.
+- Design location: Project manager home dashboard, project card; opens the create/manage screen
 - Open questions: S-002's original description says "some fields can be edited after creation" (implying others are locked) and that every edit is recorded in the project's history log — but which fields lock, and the history log itself (Project history log, v1.0), aren't decided/built yet. Until that's resolved, the simplest default is everything stays editable here, with locking and edit-history left for later.
 
 ---
