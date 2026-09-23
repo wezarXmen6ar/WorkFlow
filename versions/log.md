@@ -42,3 +42,12 @@ Never edit or delete an entry. The only lines that change afterwards: `save-prot
 - Retired: none
 - Prototype: not saved yet
 - Rollback: none
+
+## v0.1.2 (2026-09-23)
+- Draft: versions/v0.1.2/draft-v0.1.2.md
+- Approved by: Rashid on 2026-09-23
+- Added: F-007 Put a project on hold, with a reason and duration; F-008 Open and edit a project; F-009 Mark a project as launched, with a self-declared checklist
+- Amended: S-002.1 Project phases; F-006 Timeline / phase builder
+- Retired: none
+- Prototype: not saved yet
+- Rollback: none

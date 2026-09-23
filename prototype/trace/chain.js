@@ -143,6 +143,24 @@ window.TRACE_CHAIN = {
     "home": "S-002.1",
     "also": []
   },
+  "F-007": {
+    "type": "Feature",
+    "name": "Put a project on hold, with a reason and duration",
+    "home": "S-002",
+    "also": []
+  },
+  "F-008": {
+    "type": "Feature",
+    "name": "Open and edit a project",
+    "home": "S-002",
+    "also": []
+  },
+  "F-009": {
+    "type": "Feature",
+    "name": "Mark a project as launched, with a self-declared checklist",
+    "home": "S-002",
+    "also": []
+  },
   "S-003": {
     "type": "Solution",
     "name": "Project manager home dashboard",
