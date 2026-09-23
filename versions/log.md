@@ -52,3 +52,12 @@ Never edit or delete an entry. The only lines that change afterwards: `save-prot
 - Retired: none
 - Prototype: saved on 2026-09-23
 - Rollback: none
+
+## v0.1.3 (2026-09-23)
+- Draft: versions/v0.1.3/draft-v0.1.3.md
+- Approved by: Rashid on 2026-09-23
+- Added: none
+- Amended: F-006 Timeline / phase builder; F-009 Mark a project as launched, with a self-declared checklist
+- Retired: none
+- Prototype: not saved yet
+- Rollback: none

@@ -15,7 +15,6 @@ Objective: Manage all department projects in one place (O-001)
  ├─ Problem: No tool to create and manage projects (P-001)
  │   ├─ Solution: Create and manage projects (S-002) · also serves: Project files and context depend on each project manager (P-006)
  │   │   ├─ Sub-solution: Project phases (S-002.1) — AMENDED · also serves: Live project status timeline
- │   │   │   └─ Feature: Timeline / phase builder (F-006) — AMENDED
  │   │   ├─ Sub-solution: Duplicate a project — NEW
  │   │   ├─ Sub-solution: Archive and permanent delete — NEW · also serves: Live project status timeline
  │   │   └─ Feature: JIRA / PRJ reference number — NEW
@@ -99,7 +98,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: A new project can be created starting from an existing one's setup (its phases, their time frames, and the assigned team) instead of from scratch.
 - Serves: S-002
 - Also serves: none
-- Priority: Later
+- Priority: Now
 - Open questions: none
 
 ### Archive and permanent delete
@@ -123,7 +122,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: One view of all department projects (past, current, planned), with progress rolled up for the whole department, not only per project. Once "Landing page" (see above, in this same draft) routes by role, this is a likely landing view for decision makers.
 - Serves: P-002
 - Also serves: P-009 — this view is where the pile-up becomes visible.
-- Priority: Next
+- Priority: Later
 - Open questions: none
 
 ### Yearly plan by quarter
@@ -131,7 +130,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: GDAI builds the yearly plan by quarter and decision makers approve it. A project can be logged with a start quarter and no end date; the end date is set later (see "Project phases").
 - Serves: "Department portfolio view"
 - Also serves: S-002 — a new project is logged in the plan with its start quarter.
-- Priority: Next
+- Priority: Later
 - Open questions: none
 
 ### Import existing Excel data
@@ -139,7 +138,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: The tool replaces Excel for tracking projects. Existing Excel tables and data can be imported, so nothing has to be retyped and the department-wide view is filled from day one.
 - Serves: "Department portfolio view"
 - Also serves: none
-- Priority: Next
+- Priority: Later
 - Open questions: What do the Excel files contain today (project list, yearly plan, resources), and which should be imported first?
 
 ### Search and filter the project list
@@ -147,7 +146,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: The project list can be filtered by owning department, project manager, priority, developer, tech lead, completion state (finished, not started, or by phase), and whether a project is late.
 - Serves: "Department portfolio view"
 - Also serves: S-003, "Resource assignment and workload tracking" — the same filters narrow the dashboard's list, and the developer/tech-lead filters reuse resource-assignment data.
-- Priority: Next
+- Priority: Later
 - Open questions: none
 
 ### Leave and absences
@@ -171,7 +170,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: Record which resources (developers, business analysts, tech leads, project managers) are assigned to which projects.
 - Serves: P-003
 - Also serves: P-009, P-010 — both are calculated from this data.
-- Priority: Later
+- Priority: Now
 - Open questions: none
 
 ### Resource pool
@@ -179,7 +178,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: All team members are kept in a resource pool: developers, business analysts, tech leads, and project managers. The user assigns them to projects for a time frame, so it is clear who is on what and when.
 - Serves: "Resource assignment and workload tracking"
 - Also serves: "Workload indicator on the department-wide view", "Show the price of a change across all projects before it is confirmed" — both read capacity from the pool.
-- Priority: Later
+- Priority: Now
 - Open questions: none
 
 ### Assign resources to phases
@@ -267,7 +266,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: All project files in one place with context and history, and the upload date recorded, ready for anyone who takes over. Project managers and business analysts can add documents (for example the BA analysis document).
 - Serves: P-006
 - Also serves: P-007 — official documents and letters are stored here with their dates.
-- Priority: Next
+- Priority: Later
 - Open questions: none
 
 ### Second project manager and takeover
@@ -275,7 +274,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: A project can have a second project manager with the same rights, so nothing needs to happen when one is away. If a project manager is pulled from a project entirely, any other project manager can take their place. Because the history, attachments, and context are all in the tool, no handover steps are needed.
 - Serves: "Central project file repository"
 - Also serves: none
-- Priority: Next
+- Priority: Later
 - Open questions: none
 
 ### Meeting records
@@ -283,7 +282,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: The project manager can create a meeting and record everything from it in one place, linked to the project or projects it concerns: the date, who attended, the key points, the decisions made, and the actions that came out of it. Each decision recorded in a meeting also appears in the decision log.
 - Serves: "Central project file repository"
 - Also serves: "Show the price of a change across all projects before it is confirmed", "Project history log" — its decisions feed the decision log. Meeting notes are also project context that survives a handover, and part of the project's history.
-- Priority: Next
+- Priority: Later
 - Open questions: Are actions just listed, or do they have an owner and a due date and get tracked until done?
 
 ### Attach documents to projects and phases
@@ -291,7 +290,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: Official documents and letters are attached to the project or to one of its phases, for example the BA analysis document attached to the analysis phase. Each document keeps two dates: when it was created and when it was uploaded. This applies to every document in the project, including the official letters received about a project (updates, approvals, orders).
 - Serves: "Central project file repository"
 - Also serves: "Project history log" — every attachment appears in the log with its dates.
-- Priority: Next
+- Priority: Later
 - Open questions: none
 
 ### Project history log
@@ -403,7 +402,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: A lightweight grouping tag so projects can be filed under a shared "main project" and filtered together later. Not a program roll-up view — that stays with "Department portfolio view" (see draft-v1.0.md) if and when it's built.
 - Serves: P-002
 - Also serves: none
-- Priority: Next
+- Priority: Now
 - Open questions: Overlaps with "Department portfolio view" and "Search and filter the project list" (from the older full-scope draft): decide whether to link, merge, or keep both.
 
 ### Standalone or part of a main project
@@ -411,7 +410,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: At the top of the create-project form, the project manager chooses whether the project is standalone or part of a main project. If part of one, they pick it from a dropdown.
 - Serves: "Main-project grouping"
 - Also serves: none
-- Priority: Next
+- Priority: Now
 - Open questions: none
 
 ### Add a main project inline
@@ -419,7 +418,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: If the main project doesn't yet exist in the dropdown, it can be added to the list right there, on the spot, without leaving the form.
 - Serves: "Main-project grouping"
 - Also serves: none
-- Priority: Next
+- Priority: Now
 - Open questions: none
 
 ### Project attachments
@@ -427,7 +426,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: An attachments table on the create/manage project screen. Add a file, choose what it is from a dropdown, optionally link it to a phase, optionally give it a date. Each added attachment appears as a row in the table.
 - Serves: P-006
 - Also serves: P-007 — every attachment, with its date, is part of the project's record.
-- Priority: Next
+- Priority: Now
 - Open questions: Overlaps with "Attach documents to projects and phases" and "Central project file repository" (from the older full-scope draft): decide whether to link, merge, or keep both.
 
 ### Attachment types
@@ -435,7 +434,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: A dropdown of what the attachment is, seeded with types generic to IT projects: BRD, analysis document, CR, CR approval, RFP, RFI, meeting minutes. Extensible.
 - Serves: "Project attachments"
 - Also serves: none
-- Priority: Next
+- Priority: Now
 - Open questions: none
 
 ### Link attachment to a phase
@@ -443,7 +442,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: When adding an attachment, it can optionally be linked to one of the project's phases — for example, the BA analysis document linked to the analysis phase.
 - Serves: "Project attachments"
 - Also serves: none
-- Priority: Next
+- Priority: Now
 - Open questions: none
 
 ### Optional attachment date
@@ -451,7 +450,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: When adding an attachment, a date can optionally be given for it — when it was created or officially approved, not necessarily when it was uploaded. This date is what places it on the timeline.
 - Serves: "Project attachments"
 - Also serves: none
-- Priority: Next
+- Priority: Now
 - Open questions: none
 
 ### Project updates log
@@ -459,7 +458,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: An updates table on the create/manage project screen. The project manager picks a date, writes the update in a text box, optionally attaches a file, and adds it to the table.
 - Serves: P-007
 - Also serves: none
-- Priority: Later
+- Priority: Now
 - Open questions: Overlaps with "Project history log" (from the older full-scope draft): decide whether to link, merge, or keep both.
 
 ### Dated update entry
@@ -467,7 +466,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: Each update is a date, a free-text update, and an optional attachment, added with one click.
 - Serves: "Project updates log"
 - Also serves: none
-- Priority: Later
+- Priority: Now
 - Open questions: none
 
 ### Newest-first ordering
@@ -475,7 +474,7 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Description: The updates table is ordered by the update's own date, not by the order they were entered — latest to oldest.
 - Serves: "Project updates log"
 - Also serves: none
-- Priority: Later
+- Priority: Now
 - Open questions: none
 
 ### Project phases will also serve the status timeline
@@ -489,13 +488,6 @@ Same entry format as a draft (see workflow/draft-template.md), plus "Priority: N
 - Amends: S-003.1
 - Description: Once "Live project status timeline" is pushed, At-a-glance project status also serves it. The older drafts noted this link as one to add later.
 - Also serves: "Live project status timeline"
-
-### Timeline as a real dated schedule, with reordering
-- Type: Amendment
-- Amends: F-006
-- Description: The timeline is currently an abstract proportional bar — it shows the ratio of phases' work-days but no schedule. Make it a real dated timeline, using the start date and per-phase working-days already captured: (1) compute each phase's actual calendar span (phase 1 runs from the start date for its work-days, each next phase picks up where the previous ends, skipping weekends), so every phase has real dates; (2) lay it out Gantt-style — one row per phase, positioned and sized by its dates, with the hold as its own row where it applies — instead of one cramped segmented strip; (3) show each phase's computed date range next to it in the phase list as the plan is built; (4) let phases be reordered (move up/down), shifting the downstream dates live (S-002.1 already says a project "orders its own phases," but there is no way to reorder after adding). Planned schedule only; actual progress stays out of scope (that is "Phase progress reporting").
-- Also serves: none
-- Priority: Next
 
 ---
 
